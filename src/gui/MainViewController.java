@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import gui.util.Constraints;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,15 +27,6 @@ public class MainViewController implements Initializable {
 	@FXML
 	private Button btLogIn;
 
-	@FXML
-	void handleSubmit(ActionEvent event) {
-		Integer crm = null;
-		if(txtCRM.getText().length() > 0) {
-			crm = Integer.parseInt(txtCRM.getText());
-		}
-		 service.handleLogin(crm, txtPass.getText()); 
-	}
-
 	public void setService(DoctorService service) {
 		this.service = service;
 	}
@@ -47,7 +39,20 @@ public class MainViewController implements Initializable {
 		}
 		List<Doctor> list = service.findAll();
 		list.forEach(x -> System.out.println(x.toString()));
-
+		handleInitializeNodes();
 	}
+	
+	private void handleInitializeNodes() {
+		Constraints.setTextFieldInteger(txtCRM);
+	}
+	
 
+	@FXML
+	public void handleSubmit(ActionEvent event) {
+		Integer crm = null;
+		if (txtCRM.getText().length() > 0) {
+			crm = Integer.parseInt(txtCRM.getText());
+		}
+		service.handleLogin(crm, txtPass.getText());
+	}
 }

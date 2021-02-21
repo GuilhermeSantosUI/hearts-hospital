@@ -94,13 +94,12 @@ public class DoctorDaoJDBC implements DoctorDao {
 
 	@Override
 	public void handleLogin(Integer crmDoctor, String passDoctor) {
-		if (crmDoctor.equals(null) && passDoctor.equals("")) {
+		if (crmDoctor.equals(null) && passDoctor.equals(null)) {
 			Alerts.showAlert("CRM or Password blank", null, null, AlertType.ERROR);
 		} else {
-		PreparedStatement st = null;
-		ResultSet rs = null;
+			PreparedStatement st = null;
+			ResultSet rs = null;
 
-		
 			try {
 				st = conn.prepareStatement("SELECT nome FROM medico WHERE crm = ? and senha = ?");
 
