@@ -3,12 +3,15 @@ package model.dao.impl;
 import java.sql.Connection;
 import java.util.List;
 
+import db.DB;
 import model.dao.PatientDao;
 import model.entities.Patient;
 
 public class PatientDaoJDBC implements PatientDao {
 
-	private Connection conn;
+	DB con = new DB();
+	@SuppressWarnings("static-access")
+	private Connection conn = con.getConnection();
 
 	public PatientDaoJDBC(Connection conn) {
 		this.conn = conn;
@@ -24,12 +27,6 @@ public class PatientDaoJDBC implements PatientDao {
 	public void deleteById(PatientDao obj) {
 		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public Patient findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

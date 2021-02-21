@@ -9,9 +9,7 @@ public interface AppointmentDao {
 	void insert(AppointmentDao obj);
 	
 	void deleteById();
-	
-	Appointment findById(Integer id);
-	
+		
 	List<Appointment> findAll();
 	
 }

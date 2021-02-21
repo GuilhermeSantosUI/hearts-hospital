@@ -13,21 +13,21 @@ public class Doctor implements Serializable {
 	private String email;
 	private String numcelular;
 	private Date datanascimento;
-	private String senhar;
+	private String senha;
 
 	public Doctor() {
 
 	}
 
 	public Doctor(Integer crm, String nome, String cpf, String email, String numcelular, Date datanascimento,
-			String senhar) {
+			String senha) {
 		this.crm = crm;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
 		this.numcelular = numcelular;
 		this.datanascimento = datanascimento;
-		this.senhar = senhar;
+		this.senha = senha;
 	}
 
 	public Integer getCrm() {
@@ -78,18 +78,18 @@ public class Doctor implements Serializable {
 		this.datanascimento = datanascimento;
 	}
 
-	public String getSenhar() {
-		return senhar;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setSenhar(String senhar) {
-		this.senhar = senhar;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	@Override
 	public String toString() {
-		return "Medico [crm=" + crm + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", numcelular="
-				+ numcelular + ", datanascimento=" + datanascimento + ", senhar=" + senhar + "]";
+		return "Medico | CRM: " + crm + " | Nome: " + nome + " | CPF: " + cpf + " | Email: " + email 
+				+ " | Nº Celular: " + numcelular + " | Nascimento: " + datanascimento + " | Senhar: " + senha + " |";
 	}
 
 }

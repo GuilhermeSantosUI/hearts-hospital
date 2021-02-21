@@ -9,9 +9,9 @@ public interface DoctorDao {
 	void insert(Doctor obj);
 	
 	void deleteById(Integer id);
-	
-	Doctor findById(Integer id);
-	
+		
 	List<Doctor> findAll();
+	
+	void handleLogin(Integer crmDoctor, String passDoctor);
 
 }

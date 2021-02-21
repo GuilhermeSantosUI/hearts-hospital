@@ -21,15 +21,15 @@ public class Main extends Application {
 			primaryStage.setScene(mainScene);
 			primaryStage.setTitle("Hearth's Hospital | Login");
 			primaryStage.show();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
+
 	public static Scene getMainScene() {
 		return mainScene;
 	}

@@ -4,13 +4,36 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import model.entities.Doctor;
 import model.services.DoctorService;
 
 public class MainViewController implements Initializable {
 
 	private DoctorService service = new DoctorService();
+
+	@FXML
+	private TextField txtCRM;
+
+	@FXML
+	private PasswordField txtPass;
+
+	@FXML
+	private Button btLogIn;
+
+	@FXML
+	void handleSubmit(ActionEvent event) {
+		Integer crm = null;
+		if(txtCRM.getText().length() > 0) {
+			crm = Integer.parseInt(txtCRM.getText());
+		}
+		 service.handleLogin(crm, txtPass.getText()); 
+	}
 
 	public void setService(DoctorService service) {
 		this.service = service;

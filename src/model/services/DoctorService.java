@@ -14,6 +14,10 @@ public class DoctorService {
 		return dao.findAll();
 	}
 	
+	public void handleLogin(Integer crmDoctor, String passDoctor) {	
+		dao.handleLogin(crmDoctor, passDoctor);
+	}
+	
 	public void remove(Doctor obj) {
 		dao.deleteById(obj.getCrm());
 	}

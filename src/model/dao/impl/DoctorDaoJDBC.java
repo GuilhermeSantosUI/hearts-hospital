@@ -5,17 +5,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import db.DB;
 import db.DbException;
+import gui.util.Alerts;
+import javafx.scene.control.Alert.AlertType;
 import model.dao.DoctorDao;
 import model.entities.Doctor;
 
 public class DoctorDaoJDBC implements DoctorDao {
 
 	DB con = new DB();
+	@SuppressWarnings("static-access")
 	private Connection conn = con.getConnection();
 
 	public DoctorDaoJDBC(Connection conn) {
@@ -24,19 +27,21 @@ public class DoctorDaoJDBC implements DoctorDao {
 
 	@Override
 	public void insert(Doctor obj) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteById(Integer id) {
 		PreparedStatement st = null;
 		try {
-			st = conn.prepareStatement(
-					"DELETE FROM medico WHERE crm = ? ");
-			st.setInt(1, id);
-			st.executeUpdate();
-		} catch (Exception e) {
+			st = conn.prepareStatement("INSERT INTO medico" + "crm, nome, cpf, email,numcelular, datanascimento, senha"
+					+ "VALUES" + "(?,?,?,?,?,?,?)");
+
+			st.setInt(0, obj.getCrm());
+			st.setString(1, obj.getNome());
+			st.setString(2, obj.getCpf());
+			st.setString(3, obj.getEmail());
+			st.setString(4, obj.getNumcelular());
+			Date x = obj.getDatanascimento();
+			st.setDate(5, new java.sql.Date(x.getTime()));
+			st.setString(6, obj.getSenha());
+
+		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
 		} finally {
 			DB.closeStatement(st);
@@ -44,9 +49,17 @@ public class DoctorDaoJDBC implements DoctorDao {
 	}
 
 	@Override
-	public Doctor findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void deleteById(Integer id) {
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("DELETE FROM medico WHERE crm = ? ");
+			st.setInt(1, id);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}
 	}
 
 	@Override
@@ -67,7 +80,7 @@ public class DoctorDaoJDBC implements DoctorDao {
 				obj.setEmail(rs.getString("email"));
 				obj.setNumcelular(rs.getString("numcelular"));
 				obj.setDatanascimento(rs.getDate("datanascimento"));
-				obj.setSenhar(rs.getString("senha"));
+				obj.setSenha(rs.getString("senha"));
 				list.add(obj);
 			}
 			return list;
@@ -77,6 +90,35 @@ public class DoctorDaoJDBC implements DoctorDao {
 			DB.closeStatement(st);
 			DB.closeResultSet(rs);
 		}
+	}
+
+	@Override
+	public void handleLogin(Integer crmDoctor, String passDoctor) {
+		if (crmDoctor.equals(null) && passDoctor.equals("")) {
+			Alerts.showAlert("CRM or Password blank", null, null, AlertType.ERROR);
+		} else {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		
+			try {
+				st = conn.prepareStatement("SELECT nome FROM medico WHERE crm = ? and senha = ?");
+
+				st.setInt(1, crmDoctor);
+				st.setString(2, passDoctor);
+				rs = st.executeQuery();
+
+				if (rs.next()) {
+					Alerts.showAlert("Login Success", null, "CRM e Senha corretos", AlertType.CONFIRMATION);
+				} else {
+					Alerts.showAlert("Login Error", null, "CRM e/ou Senha incorretos", AlertType.ERROR);
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 }
