@@ -5,6 +5,8 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="/home/guilherme/Downloads/postgresql-42.2.18.jre7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
