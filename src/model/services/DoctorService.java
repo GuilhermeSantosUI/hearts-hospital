@@ -13,5 +13,9 @@ public class DoctorService {
 	public List<Doctor> findAll(){
 		return dao.findAll();
 	}
+	
+	public void remove(Doctor obj) {
+		dao.deleteById(obj.getCrm());
+	}
 
 }
