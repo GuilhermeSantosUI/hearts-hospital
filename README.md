@@ -4,7 +4,7 @@
 
 
 <p align="center">
-	<a href="#" target="_blank" rel="noopener noreferrer"><img alt="Made by" src="https://img.shields.io/badge/made%20by-Guilherme%20Santos%20&%20Oscar%20Marques-%237f7d7b"></a>
+	<a href="#" target="_blank" rel="noopener noreferrer"><img alt="Made by" src="https://img.shields.io/badge/made%20by-Guilherme%20Santos%20&%20Oscar%20Marques-%23ff0800"></a>
 </p>
 
 ## 👨🏻‍💻 Hello everyone, we made some changes here
