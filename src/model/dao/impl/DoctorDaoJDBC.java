@@ -17,9 +17,7 @@ import model.entities.Doctor;
 
 public class DoctorDaoJDBC implements DoctorDao {
 
-	DB con = new DB();
-	@SuppressWarnings("static-access")
-	private Connection conn = con.getConnection();
+	private Connection conn = DB.getConnection();
 
 	public DoctorDaoJDBC(Connection conn) {
 		this.conn = conn;
@@ -95,7 +93,7 @@ public class DoctorDaoJDBC implements DoctorDao {
 	@Override
 	public void handleLogin(Integer crmDoctor, String passDoctor) {
 		if (crmDoctor.equals(null) && passDoctor.equals(null)) {
-			Alerts.showAlert("CRM or Password blank", null, null, AlertType.ERROR);
+			Alerts.showAlert("CRM or Password blank", "", "", AlertType.ERROR);
 		} else {
 			PreparedStatement st = null;
 			ResultSet rs = null;
