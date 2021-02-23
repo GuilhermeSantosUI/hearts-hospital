@@ -27,7 +27,7 @@ public class AppointmentDaoJDBC implements AppointmentDao {
 	@Override
 	public void insert(AppointmentDao obj) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -77,8 +77,7 @@ public class AppointmentDaoJDBC implements AppointmentDao {
 		ResultSet rs = null;
 		try {
 			st = conn.prepareStatement(
-					"SELECT consulta.* as AppCRM FROM consulta INNER JOIN medico ON consulta.crm = medico.crm\n"
-					+ "INNER JOIN paciente ON consulta.idpaciente = paciente.idpaciente ORDER BY crm");
+					"SELECT * FROM medico, consulta, paciente WHERE medico.crm=consulta.crm AND paciente.idpaciente = consulta.idpaciente");
 			rs = st.executeQuery();
 			Map<Integer, Doctor> mapDoc = new HashMap<>();
 			Map<Integer, Patient> mapPat = new HashMap<>();

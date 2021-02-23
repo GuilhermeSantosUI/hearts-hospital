@@ -51,11 +51,10 @@ public class MainViewController implements Initializable {
 		list3.forEach(x -> System.out.println(x.toString()));
 		handleInitializeNodes();
 	}
-	
+
 	private void handleInitializeNodes() {
 		Constraints.setTextFieldInteger(txtCRM);
 	}
-	
 
 	@FXML
 	public void handleSubmit(ActionEvent event) {
