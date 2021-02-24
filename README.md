@@ -19,4 +19,20 @@ To make this project more organized, we added the DAO (Data Access Object), whic
 
 Like the description, this is a system developed for educational purposes, requested by the Federal Institute of Sergipe as a form of bimonthly assessment. In this way, it is emphasized in this document that the name of the application is only fictitious to name the "company" for which "we are developing". 😅😊
 
+#### Finished screens ✔️💻
+- [x] SigIn
+- [ ] Dashboard
+- [ ] List Doctor
+- [ ] Form Doctor
+- [ ] Delete Doctor
+- [ ] List Patient
+- [ ] Form Patient
+- [ ] Delete Patient
+- [ ] List Appointment
+- [ ] Form Appointment
+- [ ] Delete Appointment
+
+  
+*If by any chance there is time we will implement editing pages* 🔥
+
 Made with ❤️ &nbsp;by [Guilherme Santos](https://www.instagram.com/euguilhermests/) & &nbsp;[Oscar Marques](https://www.instagram.com/oscarmdan/) 👋 &nbsp;
