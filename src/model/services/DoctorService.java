@@ -2,6 +2,8 @@ package model.services;
 
 import java.util.List;
 
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import model.dao.DaoFactory;
 import model.dao.DoctorDao;
 import model.entities.Doctor;
@@ -14,7 +16,7 @@ public class DoctorService {
 		return dao.findAll();
 	}
 	
-	public void handleLogin(Integer crmDoctor, String passDoctor) {	
+	public void handleLogin(TextField crmDoctor, PasswordField passDoctor) {	
 		dao.handleLogin(crmDoctor, passDoctor);
 	}
 	

@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+#fontBold{
+	-fx-text-fill: #7f7d7b;
+	-fx-font-size: 24.0;
+	-fx-font-weight: bold;
+	-fx-font-family: 'Quicksand'
+}
+
+#buttonLogin{
+	-fx-background-color: #4e8098;
+	-fx-background-radius: 6.0;
+	-fx-text-fill: #fff;
+	-fx-font-size: 16.0;
+	-fx-cursor: hand;
+	-fx-font-weight: bold;
+	-fx-font-family: 'Quicksand'
+}
+
+#buttonLogin:hover{
+	-fx-background-color: #486675;
+	-fx-background-radius: 6.0;
+	-fx-text-fill: #fff;
+	-fx-font-size: 16.0;
+	-fx-cursor: hand;
+	-fx-font-weight: bold;
+	-fx-font-family: 'Quicksand'
+}
+
+#fontLight{
+	-fx-text-fill: #455a64;
+	-fx-font-size: 16.0;
+	-fx-font-weight: light;
+	-fx-font-family: 'Quicksand'
+}

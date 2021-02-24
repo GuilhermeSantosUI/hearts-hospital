@@ -2,6 +2,8 @@ package model.dao;
 
 import java.util.List;
 
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import model.entities.Doctor;
 
 public interface DoctorDao {
@@ -12,6 +14,6 @@ public interface DoctorDao {
 		
 	List<Doctor> findAll();
 	
-	void handleLogin(Integer crmDoctor, String passDoctor);
+	void handleLogin(TextField crmDoctor, PasswordField passDoctor);
 
 }

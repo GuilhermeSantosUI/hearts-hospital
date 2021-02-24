@@ -39,7 +39,6 @@ public class MainViewController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-
 		if (service == null) {
 			throw new IllegalStateException("Service was null");
 		}
@@ -51,6 +50,7 @@ public class MainViewController implements Initializable {
 		list3.forEach(x -> System.out.println(x.toString()));
 		handleInitializeNodes();
 	}
+	
 
 	private void handleInitializeNodes() {
 		Constraints.setTextFieldInteger(txtCRM);
@@ -58,10 +58,6 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void handleSubmit(ActionEvent event) {
-		Integer crm = null;
-		if (txtCRM.getText().length() > 0) {
-			crm = Integer.parseInt(txtCRM.getText());
-		}
-		service.handleLogin(crm, txtPass.getText());
+		service.handleLogin(txtCRM, txtPass);
 	}
 }

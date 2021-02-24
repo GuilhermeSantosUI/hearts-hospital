@@ -11,6 +11,8 @@ import java.util.List;
 import db.DB;
 import db.DbException;
 import gui.util.Alerts;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import model.dao.DoctorDao;
 import model.entities.Doctor;
@@ -91,18 +93,22 @@ public class DoctorDaoJDBC implements DoctorDao {
 	}
 
 	@Override
-	public void handleLogin(Integer crmDoctor, String passDoctor) {
-		if (crmDoctor.equals(null) && passDoctor.equals(null)) {
-			Alerts.showAlert("CRM or Password blank", "", "", AlertType.ERROR);
+	public void handleLogin(TextField crmDoctor, PasswordField passDoctor) {
+		if (crmDoctor.getText().trim().isEmpty() || passDoctor.getText().trim().isEmpty()) {
+			Alerts.showAlert("Acho que você esqueceu de algo!", "CRM e/ou senha estão nulos",
+					"Digite os dados para entrar na plataforma ", AlertType.ERROR);
 		} else {
 			PreparedStatement st = null;
 			ResultSet rs = null;
 
+			int crm = Integer.parseInt(crmDoctor.getText());
+			String pass = passDoctor.getText();
+
 			try {
 				st = conn.prepareStatement("SELECT nome FROM medico WHERE crm = ? and senha = ?");
 
-				st.setInt(1, crmDoctor);
-				st.setString(2, passDoctor);
+				st.setInt(1, crm);
+				st.setString(2, pass);
 				rs = st.executeQuery();
 
 				if (rs.next()) {
