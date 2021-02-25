@@ -18,7 +18,7 @@ import model.services.AppointmentService;
 import model.services.DoctorService;
 import model.services.PatientService;
 
-public class MainViewController implements Initializable {
+public class LandingPageController implements Initializable {
 
 	private DoctorService service = new DoctorService();
 	private PatientService service2 = new PatientService();
@@ -33,10 +33,6 @@ public class MainViewController implements Initializable {
 	@FXML
 	private Button btLogIn;
 
-	public void setService(DoctorService service) {
-		this.service = service;
-	}
-
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		if (service == null) {
@@ -50,7 +46,10 @@ public class MainViewController implements Initializable {
 		list3.forEach(x -> System.out.println(x.toString()));
 		handleInitializeNodes();
 	}
-	
+
+	public void setService(DoctorService service) {
+		this.service = service;
+	}
 
 	private void handleInitializeNodes() {
 		Constraints.setTextFieldInteger(txtCRM);
@@ -60,4 +59,5 @@ public class MainViewController implements Initializable {
 	public void handleSubmit(ActionEvent event) {
 		service.handleLogin(txtCRM, txtPass);
 	}
+
 }

@@ -8,12 +8,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import application.VistaNavigator;
 import db.DB;
 import db.DbException;
 import gui.util.Alerts;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import model.dao.DoctorDao;
 import model.entities.Doctor;
 
@@ -112,7 +113,7 @@ public class DoctorDaoJDBC implements DoctorDao {
 				rs = st.executeQuery();
 
 				if (rs.next()) {
-					Alerts.showAlert("Login Success", null, "CRM e Senha corretos", AlertType.CONFIRMATION);
+					VistaNavigator.loadVista(VistaNavigator.DASHBOARD);
 				} else {
 					Alerts.showAlert("Login Error", null, "CRM e/ou Senha incorretos", AlertType.ERROR);
 				}

@@ -35,4 +35,4 @@ Like the description, this is a system developed for educational purposes, reque
   
 *If by any chance there is time we will implement editing pages* 🔥
 
-Made with ❤️ &nbsp;by [Guilherme Santos](https://www.instagram.com/euguilhermests/) & &nbsp;[Oscar Marques](https://www.instagram.com/oscarmdan/) 👋 &nbsp;
+Made with ❤️ &nbsp;by [Guilherme Santos](https://www.instagram.com/euguilhermests/) & &nbsp;[Oscar Marques](https://www.instagram.com/oscarmdan/)
