@@ -19,8 +19,8 @@
                <children>
                   <AnchorPane prefHeight="418.0" prefWidth="373.0">
                      <children>
-                        <TextField fx:id="txtCRM" layoutX="59.0" layoutY="135.0" prefHeight="48.0" prefWidth="250.0" styleClass="textInput" stylesheets="@application.css" />
-                        <PasswordField fx:id="txtPass" layoutX="59.0" layoutY="208.0" onAction="#handleSubmit" prefHeight="48.0" prefWidth="250.0" styleClass="textInput" stylesheets="@application.css" />
+                        <TextField fx:id="txtCRM" layoutX="59.0" layoutY="135.0" prefHeight="48.0" prefWidth="250.0" promptText="CRM" styleClass="textInput" stylesheets="@application.css" />
+                        <PasswordField fx:id="txtPass" layoutX="59.0" layoutY="208.0" onAction="#handleSubmit" prefHeight="48.0" prefWidth="250.0" promptText="Senha" styleClass="textInput" stylesheets="@application.css" />
                         <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="74.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/idCRM.png" />

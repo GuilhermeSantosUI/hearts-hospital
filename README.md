@@ -21,7 +21,7 @@ Like the description, this is a system developed for educational purposes, reque
 
 #### Finished screens ✔️💻
 - [x] SigIn
-- [ ] Dashboard
+- [x] Dashboard
 - [ ] List Doctor
 - [ ] Form Doctor
 - [ ] Delete Doctor

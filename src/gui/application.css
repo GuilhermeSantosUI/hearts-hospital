@@ -2,16 +2,9 @@
 
 .fontBold{
 	-fx-text-fill: #7f7d7b;
-	-fx-font-size: 24;
+	-fx-font-size: 24.0;
 	-fx-font-weight: bold;
 	-fx-font-family: 'Quicksand'
-}
-
-.root {
-  LABEL_PADDING_TOP: 0.0;
-  LABEL_PADDING_RIGHT: 0.0;
-  LABEL_PADDING_BOTTOM: 0.0;
-  LABEL_PADDING_LEFT: -20.0;
 }
 
 .textInput{
@@ -48,9 +41,9 @@
 
 .button{
 	-fx-background-color: #4e8098;
-	-fx-background-radius: 5;
+	-fx-background-radius: 5.0;
 	-fx-text-fill: #fff;
-	-fx-font-size: 20;
+	-fx-font-size: 20.0;
 	-fx-cursor: hand;
 	-fx-font-weight: bold;
 	-fx-font-family: 'Quicksand'
@@ -59,4 +52,37 @@
 .button:hover{
 	-fx-background-color: #4a7488;
 }
+
+.fontHeader{
+	-fx-text-fill: #7f7d7b;
+	-fx-font-size: 32.0;
+	-fx-font-weight: bold;
+	-fx-font-family: 'Quicksand'
+}
+
+.fontLight{
+	-fx-text-fill: #7f7d7b;
+	-fx-font-size: 16.0;
+	-fx-font-weight: light;
+	-fx-font-family: 'Quicksand'
+}
+
+.smallFont{
+	-fx-text-fill: #fcf7f8;
+	-fx-font-size: 14.0;
+	-fx-font-weight: Regular;
+	-fx-font-family: 'Quicksand'
+}
+
+.link{
+	-fx-background-color: rgba(78.0, 128.0,152.0, 1.0);
+	-fx-background-radius: 8.0;
+}
+
+.busyContainer{
+	-fx-background-radius: 8.0;
+	-fx-background-color: #ffffff;
+}
+
+
 

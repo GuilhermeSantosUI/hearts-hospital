@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" />
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="1000.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DashboardController">
+   <children>
+      <HBox prefHeight="569.0" prefWidth="1000.0">
+         <children>
+            <AnchorPane prefHeight="515.0" prefWidth="1000.0" stylesheets="@application.css">
+               <children>
+                  <ImageView fitHeight="39.0" fitWidth="100.0" layoutX="47.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icon.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="112.0" layoutY="54.0" style="-fx-font-size: 28;" styleClass="fontBold" text="Dashboard page" />
+                  <Pane layoutX="112.0" layoutY="109.0" prefHeight="150.0" prefWidth="250.0" styleClass="link">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" styleClass="smallFont" text="Doctors:" />
+                        <Label layoutX="14.0" layoutY="43.0" style="-fx-text-fill: #fcf7f8;" styleClass="fontBold" text="List of doctors" />
+                        <Label layoutX="70.0" layoutY="14.0" styleClass="smallFont" text="28" />
+                        <Label layoutX="14.0" layoutY="72.0" styleClass="smallFont" text="of the heart's hospital." />
+                        <Pane layoutX="204.0" layoutY="104.0" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: #5a8ca5; -fx-background-radius: 8;">
+                           <children>
+                              <Label layoutX="11.0" layoutY="5.0" prefHeight="20.0" prefWidth="8.0" style="-fx-text-fill: #fcf7f8; -fx-font-size: 16;" styleClass="fontBold" text="&gt;" />
+                           </children>
+                        </Pane>
+                     </children></Pane>
+                  <Pane layoutX="376.0" layoutY="109.0" prefHeight="150.0" prefWidth="120.0" style="-fx-background-color: #90c2e7;" styleClass="link">
+                     <children>
+                        <ImageView fitHeight="39.0" fitWidth="39.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/schedule.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="14.0" layoutY="67.0" styleClass="smallFont" text="List of" />
+                        <Label layoutX="14.0" layoutY="87.0" styleClass="smallFont" text="Appointment" />
+                     </children></Pane>
+                  <Pane layoutX="509.0" layoutY="109.0" prefHeight="150.0" prefWidth="120.0" style="-fx-background-color: #ced3dc;" styleClass="link">
+                     <children>
+                        <ImageView fitHeight="39.0" fitWidth="39.0" layoutX="17.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/patient.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="13.0" layoutY="66.0" styleClass="smallFont" text="List of" />
+                        <Label layoutX="13.0" layoutY="85.0" styleClass="smallFont" text="Patient" />
+                     </children></Pane>
+                  <Pane layoutX="112.0" layoutY="286.0" prefHeight="220.0" prefWidth="517.0" styleClass="busyContainer">
+                     <children>
+                        <Label layoutX="28.0" layoutY="28.0" style="-fx-font-size: 20;" styleClass="fontBold" stylesheets="@application.css" text="Busy doctors" />
+                        <Label layoutX="28.0" layoutY="54.0" style="-fx-text-fill: #7f7d7b; -fx-font-size: 14;" styleClass="smallFont" text="Doctors with more pending appointments" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="678.0" layoutY="109.0" prefHeight="399.0" prefWidth="241.0" style="-fx-background-color: #eef2fd;" styleClass="link">
+                     <children>
+                        <ImageView fitHeight="294.0" fitWidth="338.0" layoutX="-34.0" layoutY="-40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/hummans.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="71.0" layoutY="240.0" styleClass="fontHeader" text="stay home" />
+                        <Label layoutX="130.0" layoutY="285.0" styleClass="fontHeader" text="stay safe" />
+                     </children></Pane>
+               </children>
+            </AnchorPane>
+         </children></HBox>
+   </children>
+</VBox>

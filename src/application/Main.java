@@ -13,10 +13,11 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	 @Override
 	    public void start(Stage stage) throws Exception{
-	        stage.setTitle("Airports Management");
+	        stage.setTitle("Hearth's Hospital");
 	        stage.setScene(createScene(loadMainPane()));
 	        stage.setResizable(false);
 	        stage.show();
+	        stage.centerOnScreen();
 	    }
 
 	    /**
