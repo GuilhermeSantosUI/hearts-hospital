@@ -10,6 +10,9 @@ public class VistaNavigator {
 	public static final String MAIN = "../gui/main.fxml";
 	public static final String LANDING = "../gui/landingPage.fxml";
 	public static final String DASHBOARD = "../gui/dashboard.fxml";
+	public static final String DOCTORLIST = "../gui/DoctorList.fxml";
+	public static final String APPOINTMENTLIST = "../gui/AppointmentList.fxml";
+	public static final String PATIENTLIST = "../gui/PatientList.fxml";
 
 	private static MainGUIController mainGUIController;
 

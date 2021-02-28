@@ -11,15 +11,19 @@ import model.entities.Doctor;
 public class DoctorService {
 
 	private DoctorDao dao = DaoFactory.createDoctorDao();
-	
-	public List<Doctor> findAll(){
+
+	public List<Doctor> findAll() {
 		return dao.findAll();
 	}
-	
-	public void handleLogin(TextField crmDoctor, PasswordField passDoctor) {	
+
+	public Doctor findById() {
+		return dao.findById();
+	}
+
+	public void handleLogin(TextField crmDoctor, PasswordField passDoctor) {
 		dao.handleLogin(crmDoctor, passDoctor);
 	}
-	
+
 	public void remove(Doctor obj) {
 		dao.deleteById(obj.getCrm());
 	}

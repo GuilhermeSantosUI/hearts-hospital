@@ -41,6 +41,8 @@ public class LandingPageController implements Initializable {
 		List<Doctor> list = service.findAll();
 		List<Patient> list2 = service2.findAll();
 		List<Appointment> list3 = service3.findAll();
+		Doctor doc = service.findById();
+		System.out.println(doc.toString());
 		list.forEach(x -> System.out.println(x.toString()));
 		list2.forEach(x -> System.out.println(x.toString()));
 		list3.forEach(x -> System.out.println(x.toString()));

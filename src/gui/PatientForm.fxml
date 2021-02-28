@@ -1,8 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
 
-
-<HBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="gui.PatientFormController">
-	<!-- TODO Add Nodes -->
-</HBox>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PatientFormController">
+   <children>
+      <ImageView fitHeight="39.0" fitWidth="100.0" layoutX="33.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/icon.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="77.0" layoutY="22.0" style="-fx-font-size: 22;" styleClass="fontBold" text="Form of doctors" />
+      <Label layoutX="77.0" layoutY="51.0" style="-fx-font-size: 14;" styleClass="fontLight" text="Registration for a new doctor" />
+      <TextField layoutX="72.0" layoutY="200.0" prefHeight="40.0" prefWidth="200.0" />
+      <Label layoutX="72.0" layoutY="175.0" text="CRM" />
+      <Label layoutX="72.0" layoutY="242.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" text="CRM" />
+      <TextField layoutX="73.0" layoutY="303.0" prefHeight="40.0" prefWidth="200.0" />
+      <Label layoutX="73.0" layoutY="278.0" text="CRM" />
+      <Label layoutX="73.0" layoutY="345.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" text="CRM" />
+      <TextField layoutX="73.0" layoutY="103.0" prefHeight="40.0" prefWidth="200.0" />
+      <Label layoutX="73.0" layoutY="78.0" text="CRM" />
+      <Label layoutX="73.0" layoutY="145.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" text="CRM" />
+      <TextField layoutX="300.0" layoutY="105.0" prefHeight="40.0" prefWidth="200.0" />
+      <Label layoutX="300.0" layoutY="80.0" text="CRM" />
+      <Label layoutX="300.0" layoutY="147.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" text="CRM" />
+      <TextField layoutX="300.0" layoutY="209.0" prefHeight="40.0" prefWidth="200.0" />
+      <Label layoutX="300.0" layoutY="184.0" text="CRM" />
+      <Label layoutX="300.0" layoutY="251.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" text="CRM" />
+      <TextField layoutX="300.0" layoutY="305.0" prefHeight="40.0" prefWidth="200.0" />
+      <Label layoutX="300.0" layoutY="280.0" text="CRM" />
+      <Label layoutX="300.0" layoutY="347.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" text="CRM" />
+   </children>
+</Pane>

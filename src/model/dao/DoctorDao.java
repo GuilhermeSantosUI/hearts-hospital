@@ -14,6 +14,8 @@ public interface DoctorDao {
 		
 	List<Doctor> findAll();
 	
+	Doctor findById();
+	
 	void handleLogin(TextField crmDoctor, PasswordField passDoctor);
 
 }

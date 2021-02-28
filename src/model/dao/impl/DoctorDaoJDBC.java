@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import application.VistaNavigator;
 import db.DB;
@@ -60,6 +62,33 @@ public class DoctorDaoJDBC implements DoctorDao {
 			throw new DbException(e.getMessage());
 		} finally {
 			DB.closeStatement(st);
+		}
+	}
+
+	@Override
+	public Doctor findById() {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = conn.prepareStatement(
+					"SELECT medico.* FROM medico,consulta where medico.crm = consulta.crm GROUP BY medico.crm, consulta.crm ORDER BY COUNT(*) DESC LIMIT 1 \n"
+							+ "");
+			rs = st.executeQuery();
+			Map<Integer, Doctor> mapDoc = new HashMap<>();
+			if (rs.next()) {
+				Doctor doc = mapDoc.get(rs.getInt("crm"));
+				if (doc == null) {
+					doc = instantiateDoctor(rs);
+					mapDoc.put(rs.getInt("crm"), doc);
+					return doc;
+				}
+			}
+			return null;
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
 		}
 	}
 
@@ -123,6 +152,18 @@ public class DoctorDaoJDBC implements DoctorDao {
 			}
 		}
 
+	}
+
+	private Doctor instantiateDoctor(ResultSet rs) throws SQLException {
+		Doctor doc = new Doctor();
+		doc.setCrm(rs.getInt("crm"));
+		doc.setNome(rs.getString("nome"));
+		doc.setCpf(rs.getString("cpf"));
+		doc.setEmail(rs.getString("email"));
+		doc.setNumcelular(rs.getString("numcelular"));
+		doc.setDatanascimento(rs.getDate("datanascimento"));
+		doc.setSenha(rs.getString("senha"));
+		return doc;
 	}
 
 }
