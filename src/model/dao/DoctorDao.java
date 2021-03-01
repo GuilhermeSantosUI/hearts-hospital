@@ -7,15 +7,13 @@ import javafx.scene.control.TextField;
 import model.entities.Doctor;
 
 public interface DoctorDao {
-	
+
 	void insert(Doctor obj);
-	
-	void deleteById(Integer id);
-		
+
 	List<Doctor> findAll();
-	
-	Doctor findById();
-	
+
+	Doctor findBusyDoctor();
+
 	void handleLogin(TextField crmDoctor, PasswordField passDoctor);
 
 }

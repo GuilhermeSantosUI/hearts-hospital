@@ -7,15 +7,12 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AppointmentFormController">
    <children>
-                  
-      <Pane layoutX="374.0" layoutY="337.0" prefHeight="40.0" prefWidth="100.0" styleClass="link" />
-      <Pane layoutX="486.0" layoutY="337.0" prefHeight="40.0" prefWidth="100.0" styleClass="link" />
       <ImageView fitHeight="39.0" fitWidth="100.0" layoutX="33.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/icon.png" />
          </image>
       </ImageView>
-      <Label layoutX="77.0" layoutY="22.0" style="-fx-font-size: 22;" styleClass="fontBold" text="Form of doctors" />
-      <Label layoutX="77.0" layoutY="51.0" style="-fx-font-size: 14;" styleClass="fontLight" text="Registration for a new doctor" />
+      <Label layoutX="77.0" layoutY="22.0" style="-fx-font-size: 22;" styleClass="fontBold" text="Form of appointment" />
+      <Label layoutX="77.0" layoutY="51.0" style="-fx-font-size: 14;" styleClass="fontLight" text="Registration for a new appointment" />
    </children>
 </Pane>

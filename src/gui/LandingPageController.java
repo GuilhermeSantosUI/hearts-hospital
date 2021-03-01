@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import gui.util.Constraints;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -41,7 +40,7 @@ public class LandingPageController implements Initializable {
 		List<Doctor> list = service.findAll();
 		List<Patient> list2 = service2.findAll();
 		List<Appointment> list3 = service3.findAll();
-		Doctor doc = service.findById();
+		Doctor doc = service.findBusyDoctor();
 		System.out.println(doc.toString());
 		list.forEach(x -> System.out.println(x.toString()));
 		list2.forEach(x -> System.out.println(x.toString()));
@@ -58,7 +57,7 @@ public class LandingPageController implements Initializable {
 	}
 
 	@FXML
-	public void handleSubmit(ActionEvent event) {
+	public void handleSubmit() {
 		service.handleLogin(txtCRM, txtPass);
 	}
 

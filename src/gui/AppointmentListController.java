@@ -2,19 +2,24 @@ package gui;
 
 import java.io.IOException;
 
+import application.VistaNavigator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class AppointmentListController {
 	
 	@FXML
 	private VBox appointmentContainer;
+	
+	@FXML
+	void goBack() {
+		VistaNavigator.loadVista(VistaNavigator.DASHBOARD);
+	}
 
 	@FXML
 	private void handleOpenModal(MouseEvent event) {
@@ -32,7 +37,7 @@ public class AppointmentListController {
 			return;
 		}
 		dialog.setContentText(null);
-		Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
+		dialog.getDialogPane().getScene().getWindow();
 		dialog.showAndWait();
 	}
 

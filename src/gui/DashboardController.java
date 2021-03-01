@@ -19,10 +19,10 @@ public class DashboardController implements Initializable {
 	private Button exitButton;
 
 	@FXML
-	private Label doctorName, amountDoctors, doctorEmail;
+	private Label doctorName, amountDoctors, doctorEmail, doctorCell;
 
 	private DoctorService service = new DoctorService();
-	private Doctor doctor = service.findById();
+	private Doctor doctor = service.findBusyDoctor();
 
 	@FXML
 	void handleExitAcount() {
@@ -49,6 +49,7 @@ public class DashboardController implements Initializable {
 		List<Doctor> list = service.findAll();
 		doctorName.setText(doctor.getNome());
 		doctorEmail.setText(doctor.getEmail());
+		doctorCell.setText(doctor.getNumcelular());
 		amountDoctors.setText(Integer.toString(list.size()));
 	}
 

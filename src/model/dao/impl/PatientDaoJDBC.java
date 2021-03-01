@@ -27,12 +27,6 @@ public class PatientDaoJDBC implements PatientDao {
 	}
 
 	@Override
-	public void deleteById(PatientDao obj) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public List<Patient> findAll() {
 		PreparedStatement st = null;
 		ResultSet rs = null;

@@ -16,16 +16,12 @@ public class DoctorService {
 		return dao.findAll();
 	}
 
-	public Doctor findById() {
-		return dao.findById();
+	public Doctor findBusyDoctor() {
+		return dao.findBusyDoctor();
 	}
 
 	public void handleLogin(TextField crmDoctor, PasswordField passDoctor) {
 		dao.handleLogin(crmDoctor, passDoctor);
 	}
-
-	public void remove(Doctor obj) {
-		dao.deleteById(obj.getCrm());
-	}
-
+	
 }

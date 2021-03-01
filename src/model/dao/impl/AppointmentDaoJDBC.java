@@ -30,12 +30,6 @@ public class AppointmentDaoJDBC implements AppointmentDao {
 
 	}
 
-	@Override
-	public void deleteById() {
-		// TODO Auto-generated method stub
-
-	}
-
 	private Doctor instantiateDoctor(ResultSet rs) throws SQLException {
 		Doctor doc = new Doctor();
 		doc.setCrm(rs.getInt("crm"));

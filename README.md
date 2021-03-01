@@ -22,16 +22,12 @@ Like the description, this is a system developed for educational purposes, reque
 #### Finished screens ✔️💻
 - [x] SigIn
 - [x] Dashboard
-- [ ] List Doctor
+- [x] List Doctor
 - [ ] Form Doctor
-- [ ] Delete Doctor
-- [ ] List Patient
+- [x] List Patient
 - [ ] Form Patient
-- [ ] Delete Patient
-- [ ] List Appointment
+- [x] List Appointment
 - [ ] Form Appointment
-- [ ] Delete Appointment
-
   
 *If by any chance there is time we will implement editing pages* 🔥
 

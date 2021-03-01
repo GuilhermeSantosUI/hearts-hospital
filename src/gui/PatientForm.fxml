@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -13,25 +14,22 @@
             <Image url="@images/icon.png" />
          </image>
       </ImageView>
-      <Label layoutX="77.0" layoutY="22.0" style="-fx-font-size: 22;" styleClass="fontBold" text="Form of doctors" />
-      <Label layoutX="77.0" layoutY="51.0" style="-fx-font-size: 14;" styleClass="fontLight" text="Registration for a new doctor" />
-      <TextField layoutX="72.0" layoutY="200.0" prefHeight="40.0" prefWidth="200.0" />
-      <Label layoutX="72.0" layoutY="175.0" text="CRM" />
-      <Label layoutX="72.0" layoutY="242.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" text="CRM" />
-      <TextField layoutX="73.0" layoutY="303.0" prefHeight="40.0" prefWidth="200.0" />
-      <Label layoutX="73.0" layoutY="278.0" text="CRM" />
-      <Label layoutX="73.0" layoutY="345.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" text="CRM" />
-      <TextField layoutX="73.0" layoutY="103.0" prefHeight="40.0" prefWidth="200.0" />
-      <Label layoutX="73.0" layoutY="78.0" text="CRM" />
-      <Label layoutX="73.0" layoutY="145.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" text="CRM" />
-      <TextField layoutX="300.0" layoutY="105.0" prefHeight="40.0" prefWidth="200.0" />
-      <Label layoutX="300.0" layoutY="80.0" text="CRM" />
-      <Label layoutX="300.0" layoutY="147.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" text="CRM" />
-      <TextField layoutX="300.0" layoutY="209.0" prefHeight="40.0" prefWidth="200.0" />
-      <Label layoutX="300.0" layoutY="184.0" text="CRM" />
-      <Label layoutX="300.0" layoutY="251.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" text="CRM" />
-      <TextField layoutX="300.0" layoutY="305.0" prefHeight="40.0" prefWidth="200.0" />
-      <Label layoutX="300.0" layoutY="280.0" text="CRM" />
-      <Label layoutX="300.0" layoutY="347.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" text="CRM" />
+      <Label layoutX="77.0" layoutY="22.0" style="-fx-font-size: 22;" styleClass="fontBold" text="Form of patient" />
+      <Label layoutX="77.0" layoutY="51.0" style="-fx-font-size: 14;" styleClass="fontLight" text="Registration for a new patient" />
+      <TextField layoutX="87.0" layoutY="172.0" prefHeight="40.0" prefWidth="200.0" promptText="Name" />
+      <Label fx:id="nameError" layoutX="87.0" layoutY="214.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
+      <TextField layoutX="87.0" layoutY="240.0" prefHeight="40.0" prefWidth="200.0" promptText="CPF" />
+      <Label fx:id="cpfError" layoutX="87.0" layoutY="282.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
+      <TextField layoutX="87.0" layoutY="104.0" prefHeight="40.0" prefWidth="200.0" promptText="CRM" />
+      <Label fx:id="crmError" layoutX="87.0" layoutY="146.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
+      <TextField layoutX="314.0" layoutY="104.0" prefHeight="40.0" prefWidth="200.0" promptText="Cell" />
+      <Label fx:id="cellError" layoutX="314.0" layoutY="146.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
+      <TextField layoutX="314.0" layoutY="172.0" prefHeight="40.0" prefWidth="200.0" promptText="Birthday" />
+      <Label fx:id="birthError" layoutX="314.0" layoutY="214.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
+      <TextField layoutX="87.0" layoutY="307.0" prefHeight="40.0" prefWidth="200.0" promptText="Email" />
+      <Label fx:id="emailError" layoutX="87.0" layoutY="349.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
+      <TextField layoutX="314.0" layoutY="240.0" prefHeight="40.0" prefWidth="200.0" promptText="Password" />
+      <Label fx:id="passError" layoutX="314.0" layoutY="282.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
+      <Button layoutX="314.0" layoutY="307.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16;" text="Register" />
    </children>
 </Pane>

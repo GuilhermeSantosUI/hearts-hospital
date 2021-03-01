@@ -3,7 +3,7 @@ package gui.util;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import javafx.event.ActionEvent;
@@ -35,13 +35,13 @@ public class Utils {
 		}
 	}
 
-	public static <T> void formatTableColumnDate(TableColumn<T, Calendar> tableColumn, String format) {
+	public static <T> void formatTableColumnDate(TableColumn<T, Date> tableColumn, String format) {
 		tableColumn.setCellFactory(column -> {
-			TableCell<T, Calendar> cell = new TableCell<T, Calendar>() {
+			TableCell<T, Date> cell = new TableCell<T, Date>() {
 				private SimpleDateFormat sdf = new SimpleDateFormat(format);
 
 				@Override
-				protected void updateItem(Calendar item, boolean empty) {
+				protected void updateItem(Date item, boolean empty) {
 					super.updateItem(item, empty);
 					if (empty) {
 						setText(null);
