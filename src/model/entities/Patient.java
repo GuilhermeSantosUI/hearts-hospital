@@ -8,7 +8,7 @@ public class Patient  implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer idpaciente;
-	private String nome;
+	private String nomep;
 	private String sexo;
 	private Date datanascimento;
 	private String endereco;
@@ -23,7 +23,7 @@ public class Patient  implements Serializable {
 	public Patient(Integer idpaciente, String nome, String sexo, Date datanascimento, String endereco, String telefone,
 			String numcelular, String email) {
 		this.idpaciente = idpaciente;
-		this.nome = nome;
+		this.nomep = nome;
 		this.sexo = sexo;
 		this.datanascimento = datanascimento;
 		this.endereco = endereco;
@@ -41,11 +41,11 @@ public class Patient  implements Serializable {
 	}
 
 	public String getNome() {
-		return nome;
+		return nomep;
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nomep = nome;
 	}
 
 	public String getSexo() {
@@ -98,7 +98,7 @@ public class Patient  implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Paciente [idpaciente=" + idpaciente + ", nome=" + nome + ", sexo=" + sexo + ", datanascimento="
+		return "Paciente [idpaciente=" + idpaciente + ", nome=" + nomep + ", sexo=" + sexo + ", datanascimento="
 				+ datanascimento + ", endereco=" + endereco + ", telefone=" + telefone + ", numcelular=" + numcelular
 				+ ", email=" + email + "]";
 	}

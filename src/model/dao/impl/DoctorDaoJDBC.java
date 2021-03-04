@@ -32,18 +32,19 @@ public class DoctorDaoJDBC implements DoctorDao {
 	public void insert(Doctor obj) {
 		PreparedStatement st = null;
 		try {
-			st = conn.prepareStatement("INSERT INTO medico" + "crm, nome, cpf, email,numcelular, datanascimento, senha"
-					+ "VALUES" + "(?,?,?,?,?,?,?)");
+			st = conn.prepareStatement("insert into medico (crm, nomemed, cpf, emailmed, numcelularmed, datanascimento, senha)"
+					+ "values (?, ?, ?, ?, ?, ?, ?)");
 
-			st.setInt(0, obj.getCrm());
-			st.setString(1, obj.getNome());
-			st.setString(2, obj.getCpf());
-			st.setString(3, obj.getEmail());
-			st.setString(4, obj.getNumcelular());
-			Date x = obj.getDatanascimento();
-			st.setDate(5, new java.sql.Date(x.getTime()));
-			st.setString(6, obj.getSenha());
-
+			st.setInt(1, obj.getCrm());
+			st.setString(2, obj.getNomemed());
+			st.setString(3, obj.getCpf());
+			st.setString(4, obj.getEmailmed());
+			st.setString(5, obj.getNumcelularmed());
+			Date x = obj.getDatanascimentomed();
+			st.setDate(6, new java.sql.Date(x.getTime()));
+			st.setString(7, obj.getSenha());
+			st.execute();
+			System.out.println(obj.toString());
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
 		} finally {
@@ -83,7 +84,7 @@ public class DoctorDaoJDBC implements DoctorDao {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			st = conn.prepareStatement("SELECT * FROM medico ORDER BY nome");
+			st = conn.prepareStatement("SELECT * FROM medico ORDER BY nomemed");
 			rs = st.executeQuery();
 
 			List<Doctor> list = new ArrayList<>();
@@ -91,11 +92,11 @@ public class DoctorDaoJDBC implements DoctorDao {
 			while (rs.next()) {
 				Doctor obj = new Doctor();
 				obj.setCrm(rs.getInt("crm"));
-				obj.setNome(rs.getString("nome"));
+				obj.setNomemed(rs.getString("nomemed"));
 				obj.setCpf(rs.getString("cpf"));
-				obj.setEmail(rs.getString("email"));
-				obj.setNumcelular(rs.getString("numcelular"));
-				obj.setDatanascimento(rs.getDate("datanascimento"));
+				obj.setEmailmed(rs.getString("emailmed"));
+				obj.setNumcelularmed(rs.getString("numcelularmed"));
+				obj.setDatanascimentomed(rs.getDate("datanascimentomed"));
 				obj.setSenha(rs.getString("senha"));
 				list.add(obj);
 			}
@@ -121,7 +122,7 @@ public class DoctorDaoJDBC implements DoctorDao {
 			String pass = passDoctor.getText();
 
 			try {
-				st = conn.prepareStatement("SELECT nome FROM medico WHERE crm = ? and senha = ?");
+				st = conn.prepareStatement("SELECT nomemed FROM medico WHERE crm = ? and senha = ?");
 
 				st.setInt(1, crm);
 				st.setString(2, pass);
@@ -143,11 +144,11 @@ public class DoctorDaoJDBC implements DoctorDao {
 	private Doctor instantiateDoctor(ResultSet rs) throws SQLException {
 		Doctor doc = new Doctor();
 		doc.setCrm(rs.getInt("crm"));
-		doc.setNome(rs.getString("nome"));
+		doc.setNomemed(rs.getString("nomemed"));
 		doc.setCpf(rs.getString("cpf"));
-		doc.setEmail(rs.getString("email"));
-		doc.setNumcelular(rs.getString("numcelular"));
-		doc.setDatanascimento(rs.getDate("datanascimento"));
+		doc.setEmailmed(rs.getString("emailmed"));
+		doc.setNumcelularmed(rs.getString("numcelularmed"));
+		doc.setDatanascimentomed(rs.getDate("datanascimentomed"));
 		doc.setSenha(rs.getString("senha"));
 		return doc;
 	}

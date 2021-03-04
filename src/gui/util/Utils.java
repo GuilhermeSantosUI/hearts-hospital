@@ -11,6 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -96,6 +98,58 @@ public class Utils {
 				} else {
 					return null;
 				}
+			}
+		});
+	}
+	
+	public static void CPFmask(TextField textField) {
+
+		textField.setOnKeyTyped((KeyEvent event) -> {
+			if ("0123456789".contains(event.getCharacter()) == false) {
+				event.consume();
+			}
+
+			if (event.getCharacter().trim().length() == 0) {
+
+				if (textField.getText().length() == 4) {
+					textField.setText(textField.getText().substring(0, 3));
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 8) {
+					textField.setText(textField.getText().substring(0, 7));
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 12) {
+					textField.setText(textField.getText().substring(0, 11));
+					textField.positionCaret(textField.getText().length());
+				}
+
+			} else {
+
+				if (textField.getText().length() == 14)
+					event.consume();
+
+				if (textField.getText().length() == 3) {
+					textField.setText(textField.getText() + ".");
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 7) {
+					textField.setText(textField.getText() + ".");
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 11) {
+					textField.setText(textField.getText() + "-");
+					textField.positionCaret(textField.getText().length());
+				}
+
+			}
+		});
+
+		textField.setOnKeyReleased((KeyEvent evt) -> {
+
+			if (!textField.getText().matches("\\d.-*")) {
+				textField.setText(textField.getText().replaceAll("[^\\d.-]", ""));
+				textField.positionCaret(textField.getText().length());
 			}
 		});
 	}

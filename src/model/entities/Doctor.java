@@ -8,25 +8,26 @@ public class Doctor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer crm;
-	private String nome;
+	private String nomemed;
 	private String cpf;
-	private String email;
-	private String numcelular;
-	private Date datanascimento;
+	private String emailmed;
+	private String numcelularmed;
+	private Date datanascimentomed;
 	private String senha;
 
 	public Doctor() {
 
 	}
 
-	public Doctor(Integer crm, String nome, String cpf, String email, String numcelular, Date datanascimento,
-			String senha) {
+	public Doctor(Integer crm, String nomemed, String cpf, String emailmed, String numcelularmed,
+			Date datanascimentomed, String senha) {
+		super();
 		this.crm = crm;
-		this.nome = nome;
+		this.nomemed = nomemed;
 		this.cpf = cpf;
-		this.email = email;
-		this.numcelular = numcelular;
-		this.datanascimento = datanascimento;
+		this.emailmed = emailmed;
+		this.numcelularmed = numcelularmed;
+		this.datanascimentomed = datanascimentomed;
 		this.senha = senha;
 	}
 
@@ -38,12 +39,12 @@ public class Doctor implements Serializable {
 		this.crm = crm;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getNomemed() {
+		return nomemed;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setNomemed(String nomemed) {
+		this.nomemed = nomemed;
 	}
 
 	public String getCpf() {
@@ -54,28 +55,28 @@ public class Doctor implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getEmailmed() {
+		return emailmed;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmailmed(String emailmed) {
+		this.emailmed = emailmed;
 	}
 
-	public String getNumcelular() {
-		return numcelular;
+	public String getNumcelularmed() {
+		return numcelularmed;
 	}
 
-	public void setNumcelular(String numcelular) {
-		this.numcelular = numcelular;
+	public void setNumcelularmed(String numcelularmed) {
+		this.numcelularmed = numcelularmed;
 	}
 
-	public Date getDatanascimento() {
-		return datanascimento;
+	public Date getDatanascimentomed() {
+		return datanascimentomed;
 	}
 
-	public void setDatanascimento(Date datanascimento) {
-		this.datanascimento = datanascimento;
+	public void setDatanascimentomed(Date datanascimentomed) {
+		this.datanascimentomed = datanascimentomed;
 	}
 
 	public String getSenha() {
@@ -88,8 +89,7 @@ public class Doctor implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Medico | CRM: " + crm + " | Nome: " + nome + " | CPF: " + cpf + " | Email: " + email 
-				+ " | Nº Celular: " + numcelular + " | Nascimento: " + datanascimento + " | Senhar: " + senha + " |";
+		return "" + crm;
 	}
 
 }

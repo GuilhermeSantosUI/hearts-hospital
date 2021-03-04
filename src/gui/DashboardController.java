@@ -47,9 +47,9 @@ public class DashboardController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		List<Doctor> list = service.findAll();
-		doctorName.setText(doctor.getNome());
-		doctorEmail.setText(doctor.getEmail());
-		doctorCell.setText(doctor.getNumcelular());
+		doctorName.setText(doctor.getNomemed());
+		doctorEmail.setText(doctor.getEmailmed());
+		doctorCell.setText(doctor.getNumcelularmed());
 		amountDoctors.setText(Integer.toString(list.size()));
 	}
 

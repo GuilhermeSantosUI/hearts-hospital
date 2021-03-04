@@ -33,11 +33,11 @@ public class AppointmentDaoJDBC implements AppointmentDao {
 	private Doctor instantiateDoctor(ResultSet rs) throws SQLException {
 		Doctor doc = new Doctor();
 		doc.setCrm(rs.getInt("crm"));
-		doc.setNome(rs.getString("nome"));
+		doc.setNomemed(rs.getString("nomemed"));
 		doc.setCpf(rs.getString("cpf"));
-		doc.setEmail(rs.getString("email"));
-		doc.setNumcelular(rs.getString("numcelular"));
-		doc.setDatanascimento(rs.getDate("datanascimento"));
+		doc.setEmailmed(rs.getString("emailmed"));
+		doc.setNumcelularmed(rs.getString("numcelularmed"));
+		doc.setDatanascimentomed(rs.getDate("datanascimentomed"));
 		doc.setSenha(rs.getString("senha"));
 		return doc;
 	}
@@ -56,12 +56,12 @@ public class AppointmentDaoJDBC implements AppointmentDao {
 	}
 
 	private Appointment instantiateApointment(ResultSet rs, Doctor doc, Patient pat) throws SQLException {
-		Appointment apoint = new Appointment();
-		apoint.setCrm(doc);
-		apoint.setIdpaciente(pat);
-		apoint.setDataconsulta(rs.getDate("dataconsulta"));
-		apoint.setDescricao(rs.getString("descricao"));
-		return apoint;
+		Appointment appoint = new Appointment();
+		appoint.setCrm(doc);
+		appoint.setIdpaciente(pat);
+		appoint.setDataconsulta(rs.getDate("dataconsulta"));
+		appoint.setDescricao(rs.getString("descricao"));
+		return appoint;
 	}
 
 	@Override
@@ -71,7 +71,8 @@ public class AppointmentDaoJDBC implements AppointmentDao {
 		ResultSet rs = null;
 		try {
 			st = conn.prepareStatement(
-					"SELECT * FROM medico, consulta, paciente WHERE medico.crm=consulta.crm AND paciente.idpaciente = consulta.idpaciente");
+					"select * from consulta, medico, paciente  where consulta.crm = medico.crm and consulta.idpaciente = paciente.idpaciente\n"
+					+ "");
 			rs = st.executeQuery();
 			Map<Integer, Doctor> mapDoc = new HashMap<>();
 			Map<Integer, Patient> mapPat = new HashMap<>();
@@ -84,6 +85,8 @@ public class AppointmentDaoJDBC implements AppointmentDao {
 					pat = instantiatePatient(rs);
 					mapDoc.put(rs.getInt("crm"), doc);
 					mapPat.put(rs.getInt("idpaciente"), pat);
+					System.out.println(pat.toString());
+					System.out.println(doc.toString());
 				}
 				Appointment apoint = instantiateApointment(rs, doc, pat);
 				list.add(apoint);

@@ -108,7 +108,7 @@ public class DoctorListController implements Initializable, DataChangeListener {
 				}
 				String lowerCaseFilter = newValue.toLowerCase();
 
-				if (patient.getNome().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+				if (patient.getNomemed().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches username
 				} else {
 					return false; // Does not match.

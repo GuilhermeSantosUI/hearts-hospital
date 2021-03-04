@@ -19,7 +19,6 @@ private static Connection conn = null;
 				Properties props = loadProperties();
 				String url = props.getProperty("dburl");
 				conn = DriverManager.getConnection(url, props);
-				System.out.println("CONECTADO!!");
 			}
 			catch (SQLException e) {
 				throw new DbException(e.getMessage());

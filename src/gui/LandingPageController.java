@@ -11,16 +11,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.entities.Appointment;
-import model.entities.Doctor;
-import model.entities.Patient;
 import model.services.AppointmentService;
 import model.services.DoctorService;
-import model.services.PatientService;
 
 public class LandingPageController implements Initializable {
 
 	private DoctorService service = new DoctorService();
-	private PatientService service2 = new PatientService();
 	private AppointmentService service3 = new AppointmentService();
 
 	@FXML
@@ -37,14 +33,8 @@ public class LandingPageController implements Initializable {
 		if (service == null) {
 			throw new IllegalStateException("Service was null");
 		}
-		List<Doctor> list = service.findAll();
-		List<Patient> list2 = service2.findAll();
-		List<Appointment> list3 = service3.findAll();
-		Doctor doc = service.findBusyDoctor();
-		System.out.println(doc.toString());
-		list.forEach(x -> System.out.println(x.toString()));
-		list2.forEach(x -> System.out.println(x.toString()));
-		list3.forEach(x -> System.out.println(x.toString()));
+		List<Appointment> list = service3.findAll();
+		list.forEach(x -> System.out.println(x.toString()));		
 		handleInitializeNodes();
 	}
 
