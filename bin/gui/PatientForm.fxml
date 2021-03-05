@@ -18,20 +18,20 @@
       </ImageView>
       <Label layoutX="77.0" layoutY="22.0" style="-fx-font-size: 22;" styleClass="fontBold" text="Form of patient" />
       <Label layoutX="77.0" layoutY="51.0" style="-fx-font-size: 14;" styleClass="fontLight" text="Registration for a new patient" />
-      <Label fx:id="nameError" layoutX="87.0" layoutY="214.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
-      <Label fx:id="cpfError" layoutX="87.0" layoutY="282.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
-      <Label fx:id="crmError" layoutX="87.0" layoutY="146.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
-      <TextField layoutX="314.0" layoutY="104.0" prefHeight="40.0" prefWidth="200.0" promptText="Cell" />
+      <Label fx:id="genderError" layoutX="87.0" layoutY="214.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
+      <Label fx:id="dateError" layoutX="87.0" layoutY="282.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
+      <Label fx:id="nameError" layoutX="87.0" layoutY="146.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
+      <TextField fx:id="txtName" layoutX="87.0" layoutY="104.0" prefHeight="40.0" prefWidth="200.0" promptText="Name" />
+      <ComboBox fx:id="cbGender" layoutX="88.0" layoutY="172.0" prefHeight="40.0" prefWidth="200.0" promptText="Gender" />
+      <DatePicker fx:id="dpBirth" layoutX="87.0" layoutY="240.0" prefHeight="40.0" prefWidth="200.0" promptText="Birth" />
+      <TextField fx:id="txtAddress" layoutX="87.0" layoutY="307.0" prefHeight="40.0" prefWidth="200.0" promptText="Address" />
+      <TextField fx:id="txtCell" layoutX="314.0" layoutY="104.0" prefHeight="40.0" prefWidth="200.0" promptText="Cell" />
       <Label fx:id="cellError" layoutX="314.0" layoutY="146.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
-      <TextField layoutX="314.0" layoutY="172.0" prefHeight="40.0" prefWidth="200.0" promptText="Tell" />
-      <Label fx:id="birthError" layoutX="314.0" layoutY="214.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
-      <TextField layoutX="87.0" layoutY="307.0" prefHeight="40.0" prefWidth="200.0" promptText="Email" />
-      <Label fx:id="emailError" layoutX="87.0" layoutY="349.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
-      <TextField layoutX="314.0" layoutY="240.0" prefHeight="40.0" prefWidth="200.0" promptText="Address" />
-      <Label fx:id="passError" layoutX="314.0" layoutY="282.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
+      <TextField fx:id="txtTelephone" layoutX="314.0" layoutY="172.0" prefHeight="40.0" prefWidth="200.0" promptText="Telephone" />
+      <Label fx:id="teleError" layoutX="314.0" layoutY="214.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
+      <Label fx:id="addressError" layoutX="87.0" layoutY="349.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
+      <TextField fx:id="txtEmail" layoutX="314.0" layoutY="240.0" prefHeight="40.0" prefWidth="200.0" promptText="Email" />
+      <Label fx:id="emailError" layoutX="314.0" layoutY="282.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
       <Button layoutX="314.0" layoutY="307.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16;" text="Register" />
-      <DatePicker layoutX="87.0" layoutY="240.0" prefHeight="40.0" prefWidth="200.0" promptText="Birth" />
-      <TextField layoutX="87.0" layoutY="104.0" prefHeight="40.0" prefWidth="200.0" promptText="Name" />
-      <ComboBox layoutX="88.0" layoutY="172.0" prefHeight="40.0" prefWidth="200.0" promptText="Doctor" />
    </children>
 </Pane>

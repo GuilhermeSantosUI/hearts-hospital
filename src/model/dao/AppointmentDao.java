@@ -6,7 +6,7 @@ import model.entities.Appointment;
 
 public interface AppointmentDao {
 
-	void insert(AppointmentDao obj);
+	void insert(Appointment obj);
 			
 	List<Appointment> findAll();
 	

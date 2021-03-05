@@ -32,7 +32,7 @@ public class DoctorDaoJDBC implements DoctorDao {
 	public void insert(Doctor obj) {
 		PreparedStatement st = null;
 		try {
-			st = conn.prepareStatement("insert into medico (crm, nomemed, cpf, emailmed, numcelularmed, datanascimento, senha)"
+			st = conn.prepareStatement("insert into medico (crm, nomemed, cpf, emailmed, numcelularmed, datanascimentomed, senha)"
 					+ "values (?, ?, ?, ?, ?, ?, ?)");
 
 			st.setInt(1, obj.getCrm());

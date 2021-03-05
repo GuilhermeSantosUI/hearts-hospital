@@ -3,7 +3,7 @@ package model.entities;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Patient  implements Serializable {
+public class Patient implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -98,9 +98,7 @@ public class Patient  implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Paciente [idpaciente=" + idpaciente + ", nome=" + nomep + ", sexo=" + sexo + ", datanascimento="
-				+ datanascimento + ", endereco=" + endereco + ", telefone=" + telefone + ", numcelular=" + numcelular
-				+ ", email=" + email + "]";
+		return "" + nomep;
 	}
 
 }

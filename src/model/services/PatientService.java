@@ -13,5 +13,10 @@ public class PatientService {
 	public List<Patient> findAll(){
 		return dao.findAll();
 	}
+	
+	public void saveData(Patient obj) {
+		dao.insert(obj);
+	} 
 
 }
+			

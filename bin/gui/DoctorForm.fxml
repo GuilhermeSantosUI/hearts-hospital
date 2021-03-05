@@ -17,21 +17,20 @@
       </ImageView>
       <Label layoutX="77.0" layoutY="22.0" style="-fx-font-size: 22;" styleClass="fontBold" text="Form of doctors" />
       <Label layoutX="77.0" layoutY="51.0" style="-fx-font-size: 14;" styleClass="fontLight" text="Registration for a new doctor" />
+      <TextField fx:id="txtCrm" layoutX="87.0" layoutY="104.0" prefHeight="40.0" prefWidth="200.0" promptText="CRM" />
       <TextField fx:id="txtName" layoutX="87.0" layoutY="172.0" prefHeight="40.0" prefWidth="200.0" promptText="Name" />
       <Label fx:id="nameError" layoutX="87.0" layoutY="214.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
       <TextField fx:id="txtCpf" layoutX="87.0" layoutY="240.0" prefHeight="40.0" prefWidth="200.0" promptText="CPF" />
       <Label fx:id="cpfError" layoutX="87.0" layoutY="282.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
-      <TextField fx:id="txtCrm" layoutX="87.0" layoutY="104.0" prefHeight="40.0" prefWidth="200.0" promptText="CRM" />
       <Label fx:id="crmError" layoutX="87.0" layoutY="146.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
-      <TextField fx:id="txtCell" layoutX="314.0" layoutY="104.0" prefHeight="40.0" prefWidth="200.0" promptText="Cellphone number" />
-      <Label fx:id="cellError" layoutX="314.0" layoutY="146.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
-      <TextField layoutX="314.0" layoutY="172.0" prefHeight="40.0" prefWidth="200.0" promptText="Birthday" />
-      <Label fx:id="birthError" layoutX="314.0" layoutY="214.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
       <TextField fx:id="txtEmail" layoutX="87.0" layoutY="307.0" prefHeight="40.0" prefWidth="200.0" promptText="Email" />
-      <Label fx:id="emailError" layoutX="87.0" layoutY="349.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
+      <TextField fx:id="txtCell" layoutX="314.0" layoutY="104.0" prefHeight="40.0" prefWidth="200.0" promptText="Cellphone number" />
+      <DatePicker fx:id="dpBirth" layoutX="314.0" layoutY="172.0" prefHeight="40.0" prefWidth="200.0" promptText="Birthday" />
+      <Label fx:id="cellError" layoutX="314.0" layoutY="146.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
       <TextField fx:id="txtPass" layoutX="314.0" layoutY="240.0" prefHeight="40.0" prefWidth="200.0" promptText="Password" />
+      <Label fx:id="birthError" layoutX="314.0" layoutY="214.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
+      <Label fx:id="emailError" layoutX="87.0" layoutY="349.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
       <Label fx:id="passError" layoutX="314.0" layoutY="282.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
       <Button layoutX="314.0" layoutY="307.0" mnemonicParsing="false" onAction="#onBtSaveAction" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16;" text="Register" />
-      <DatePicker fx:id="dpBirth" layoutX="314.0" layoutY="172.0" prefHeight="40.0" prefWidth="200.0" promptText="Birthday" />
    </children>
 </Pane>

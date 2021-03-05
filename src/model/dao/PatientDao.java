@@ -6,7 +6,7 @@ import model.entities.Patient;
 
 public interface PatientDao {
 	
-	void insert(PatientDao obj);
+	void insert(Patient obj);
 		
 	List<Patient> findAll();
 

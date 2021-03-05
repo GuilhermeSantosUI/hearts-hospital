@@ -91,11 +91,11 @@ public class DoctorListController implements Initializable, DataChangeListener {
 	
 	private void handleSearchPatient() {
 		crmColumn.setCellValueFactory(new PropertyValueFactory<>("crm"));
-		nameColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
+		nameColumn.setCellValueFactory(new PropertyValueFactory<>("nomemed"));
 		cpfColumn.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-		emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-		cellColumn.setCellValueFactory(new PropertyValueFactory<>("numcelular"));
-		birthColumn.setCellValueFactory(new PropertyValueFactory<>("datanascimento"));
+		emailColumn.setCellValueFactory(new PropertyValueFactory<>("emailmed"));
+		cellColumn.setCellValueFactory(new PropertyValueFactory<>("numcelularmed"));
+		birthColumn.setCellValueFactory(new PropertyValueFactory<>("datanascimentomed"));
 		Utils.formatTableColumnDate(birthColumn, "dd/MM/yyyy");
 		passColumn.setCellValueFactory(new PropertyValueFactory<>("senha"));
 		List<Doctor> list = service.findAll();

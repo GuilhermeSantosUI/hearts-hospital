@@ -1,7 +1,6 @@
 package gui;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import gui.util.Constraints;
@@ -10,14 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import model.entities.Appointment;
-import model.services.AppointmentService;
 import model.services.DoctorService;
 
 public class LandingPageController implements Initializable {
 
 	private DoctorService service = new DoctorService();
-	private AppointmentService service3 = new AppointmentService();
 
 	@FXML
 	private TextField txtCRM;
@@ -33,8 +29,6 @@ public class LandingPageController implements Initializable {
 		if (service == null) {
 			throw new IllegalStateException("Service was null");
 		}
-		List<Appointment> list = service3.findAll();
-		list.forEach(x -> System.out.println(x.toString()));		
 		handleInitializeNodes();
 	}
 

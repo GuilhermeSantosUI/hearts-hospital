@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,9 +26,22 @@ public class AppointmentDaoJDBC implements AppointmentDao {
 	}
 
 	@Override
-	public void insert(AppointmentDao obj) {
-		// TODO Auto-generated method stub
-
+	public void insert(Appointment obj) {
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement(
+					"INSERT INTO consulta (crm, idpaciente, dataconsulta, descricao) VALUES (?, ?, ?, ?)");
+			st.setInt(1, obj.getCrm().getCrm());
+			st.setInt(2, obj.getIdpaciente().getIdpaciente());
+			Date x = obj.getDataconsulta();
+			st.setDate(3, new java.sql.Date(x.getTime()));
+			st.setString(4, obj.getDescricao());
+			System.out.println(obj.toString());
+		} catch (Exception e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}
 	}
 
 	private Doctor instantiateDoctor(ResultSet rs) throws SQLException {
@@ -72,7 +86,7 @@ public class AppointmentDaoJDBC implements AppointmentDao {
 		try {
 			st = conn.prepareStatement(
 					"select * from consulta, medico, paciente  where consulta.crm = medico.crm and consulta.idpaciente = paciente.idpaciente\n"
-					+ "");
+							+ "");
 			rs = st.executeQuery();
 			Map<Integer, Doctor> mapDoc = new HashMap<>();
 			Map<Integer, Patient> mapPat = new HashMap<>();
@@ -85,8 +99,6 @@ public class AppointmentDaoJDBC implements AppointmentDao {
 					pat = instantiatePatient(rs);
 					mapDoc.put(rs.getInt("crm"), doc);
 					mapPat.put(rs.getInt("idpaciente"), pat);
-					System.out.println(pat.toString());
-					System.out.println(doc.toString());
 				}
 				Appointment apoint = instantiateApointment(rs, doc, pat);
 				list.add(apoint);
