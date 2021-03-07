@@ -1,10 +1,8 @@
 package gui;
 
 import java.net.URL;
-import java.time.Instant;
-import java.time.ZoneId;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -66,7 +64,7 @@ public class AppointmentFormController implements Initializable {
 	private Appointment entity = new Appointment();
 
 	private AppointmentService service = new AppointmentService();
-	
+
 	private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 
 	public void loadAssociatedObjects() {
@@ -76,12 +74,12 @@ public class AppointmentFormController implements Initializable {
 		List<Doctor> listDoc = doctorService.findAll();
 		obsListDoctor = FXCollections.observableArrayList(listDoc);
 		cbDoctor.setItems(obsListDoctor);
-		
+
 		List<Patient> listPat = patientService.findAll();
 		obsListPatient = FXCollections.observableArrayList(listPat);
 		cbPatient.setItems(obsListPatient);
 	}
-	
+
 	private void notifyDataChangeListeners() {
 		for (DataChangeListener listener : dataChangeListeners) {
 			listener.onDataChanged();
@@ -97,7 +95,7 @@ public class AppointmentFormController implements Initializable {
 			throw new IllegalStateException("Service was null");
 		}
 		try {
-			System.out.println(getData().toString());
+			entity = getData();
 			service.saveData(entity);
 			notifyDataChangeListeners();
 			Utils.currentStage(event).close();
@@ -111,36 +109,43 @@ public class AppointmentFormController implements Initializable {
 	private Appointment getData() {
 		Appointment appoint = new Appointment();
 		ValidateException exception = new ValidateException("Validation error");
-		appoint.setCrm(cbDoctor.getValue());
+		System.out.println(cbDoctor.getValue());
+	
+		appoint.setMedicoid(cbDoctor.getValue());
 
 		if (dpDate.getValue() == null) {
-			exception.addError("appointmentDate", "Field can't be empty");
+			exception.addError("dataconsulta", "Field can't be empty");
 		} else {
-			Instant instant = Instant.from(dpDate.getValue().atStartOfDay(ZoneId.systemDefault()));
-			Date x = Date.from(instant);
-			appoint.setDataconsulta(x);
+			LocalDate localDate = dpDate.getValue();
+			java.util.Date date = java.sql.Date.valueOf(localDate);
+
+			System.out.println(date);
+			appoint.setDataconsulta(date);
 		}
 
-		appoint.setIdpaciente(cbPatient.getValue());
+		System.out.println(cbPatient.getValue());
+
+		appoint.setPacienteid(cbPatient.getValue());
 
 		if (txtDescription.getText() == null || txtDescription.getText().trim().equals("")) {
-			exception.addError("descArea", "Field can't be empty");
+			exception.addError("descricao", "Field can't be empty");
 		}
 		appoint.setDescricao(txtDescription.getText());
+		System.out.println(txtDescription.getText());
 
 		if (exception.getErrors().size() > 0) {
 			throw exception;
 		}
-		System.out.println(appoint.toString());
+
 		return appoint;
 	}
-	
+
 	private void setErrorMessages(Map<String, String> errors) {
 		Set<String> fields = errors.keySet();
-		dateError.setText((fields.contains("appointmentDate") ? errors.get("appointmentDate") : ""));
-		descError.setText((fields.contains("descArea") ? errors.get("descArea") : ""));
+		dateError.setText((fields.contains("dataconsulta") ? errors.get("dataconsulta") : ""));
+		descError.setText((fields.contains("descricao") ? errors.get("descricao") : ""));
 	}
-	
+
 	private void initializeComboBoxDoctor() {
 		Callback<ListView<Doctor>, ListCell<Doctor>> factory = lv -> new ListCell<Doctor>() {
 			@Override
@@ -154,17 +159,34 @@ public class AppointmentFormController implements Initializable {
 		cbDoctor.setCellFactory(factory);
 		cbDoctor.setButtonCell(factory.call(null));
 	}
+	
+	private void initializeComboBoxPatient() {
+		Callback<ListView<Patient>, ListCell<Patient>> factory = lv -> new ListCell<Patient>() {
+			@Override
+			protected void updateItem(Patient item, boolean empty) {
+				super.updateItem(item, empty);
+				setText(empty ? "" : item.getNome());
+
+			}
+		};
+
+		cbPatient.setCellFactory(factory);
+		cbPatient.setButtonCell(factory.call(null));
+	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		initializeNodes();
 		initializeComboBoxDoctor();
+		initializeComboBoxPatient();
 	}
 
 	private void initializeNodes() {
 		loadAssociatedObjects();
-		new AutoCompleteComboBoxListener<>(cbDoctor);
-		new AutoCompleteComboBoxListener<>(cbPatient);
+		/*
+		 * new AutoCompleteComboBoxListener<>(cbDoctor); new
+		 * AutoCompleteComboBoxListener<>(cbPatient);
+		 */
 		txtDescription.setWrapText(true);
 	}
 

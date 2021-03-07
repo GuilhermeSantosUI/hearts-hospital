@@ -86,19 +86,19 @@ public class AppointmentListController implements Initializable {
 	}
 
 	private void handleSearchAppointment() {
-		crmColumn.setCellValueFactory(new PropertyValueFactory<>("crm"));
+		crmColumn.setCellValueFactory(new PropertyValueFactory<>("medicoid"));
 		doctorColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Appointment, String>, ObservableValue<String>>() {
 	        @Override
 	        public ObservableValue<String> call(TableColumn.CellDataFeatures<Appointment
 	        		, String> param) {
-	            return new SimpleStringProperty(param.getValue().getCrm().getNomemed());
+	            return new SimpleStringProperty(param.getValue().getMedicoid().getNomemed());
 	        }
 	    });
 		patientColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Appointment, String>, ObservableValue<String>>() {
 	        @Override
 	        public ObservableValue<String> call(TableColumn.CellDataFeatures<Appointment
 	        		, String> param) {
-	            return new SimpleStringProperty(param.getValue().getIdpaciente().getNome());
+	            return new SimpleStringProperty(param.getValue().getPacienteid().getNome());
 	        }
 	    });
 		descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("descricao"));
@@ -114,7 +114,7 @@ public class AppointmentListController implements Initializable {
 				}
 				String lowerCaseFilter = newValue.toLowerCase();
 
-				if (patient.getIdpaciente().getNome().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+				if (patient.getPacienteid().getNome().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches username
 				} else {
 					return false; // Does not match.

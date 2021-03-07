@@ -7,8 +7,8 @@ public class Appointment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Doctor crm;
-	private Patient idpaciente;
+	private Doctor medicoid;
+	private Patient pacienteid;
 	private Date dataconsulta;
 	private String descricao;
 
@@ -16,27 +16,28 @@ public class Appointment implements Serializable {
 
 	}
 
-	public Appointment(Doctor crm, Patient idpaciente, Date dataconsulta, String descricao) {
-		this.crm = crm;
-		this.idpaciente = idpaciente;
+	public Appointment(Doctor medicoid, Patient pacienteid, Date dataconsulta, String descricao) {
+		super();
+		this.medicoid = medicoid;
+		this.pacienteid = pacienteid;
 		this.dataconsulta = dataconsulta;
 		this.descricao = descricao;
 	}
 
-	public Doctor getCrm() {
-		return crm;
+	public Doctor getMedicoid() {
+		return medicoid;
 	}
 
-	public void setCrm(Doctor crm) {
-		this.crm = crm;
+	public void setMedicoid(Doctor medicoid) {
+		this.medicoid = medicoid;
 	}
 
-	public Patient getIdpaciente() {
-		return idpaciente;
+	public Patient getPacienteid() {
+		return pacienteid;
 	}
 
-	public void setIdpaciente(Patient idpaciente) {
-		this.idpaciente = idpaciente;
+	public void setPacienteid(Patient pacienteid) {
+		this.pacienteid = pacienteid;
 	}
 
 	public Date getDataconsulta() {
@@ -57,8 +58,8 @@ public class Appointment implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Consulta [crm=" + crm + ", idpaciente=" + idpaciente + ", dataconsulta=" + dataconsulta + ", descricao="
-				+ descricao + "]";
+		return "Appointment [medicoid=" + medicoid + ", pacienteid=" + pacienteid + ", dataconsulta=" + dataconsulta
+				+ ", descricao=" + descricao + "]";
 	}
 
 }

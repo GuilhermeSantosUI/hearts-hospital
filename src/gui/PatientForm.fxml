@@ -32,6 +32,6 @@
       <Label fx:id="addressError" layoutX="87.0" layoutY="349.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
       <TextField fx:id="txtEmail" layoutX="314.0" layoutY="240.0" prefHeight="40.0" prefWidth="200.0" promptText="Email" />
       <Label fx:id="emailError" layoutX="314.0" layoutY="282.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
-      <Button layoutX="314.0" layoutY="307.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16;" text="Register" />
+      <Button layoutX="314.0" layoutY="307.0" mnemonicParsing="false" onAction="#onBtSaveAction" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16;" text="Register" />
    </children>
 </Pane>

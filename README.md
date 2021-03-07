@@ -25,9 +25,9 @@ Like the description, this is a system developed for educational purposes, reque
 - [x] List Doctor
 - [x] Form Doctor
 - [x] List Patient
-- [ ] Form Patient
+- [x] Form Patient
 - [x] List Appointment
-- [ ] Form Appointment
+- [x] Form Appointment
   
 *If by any chance there is time we will implement editing pages* 🔥
 

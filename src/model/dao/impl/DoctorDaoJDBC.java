@@ -58,7 +58,7 @@ public class DoctorDaoJDBC implements DoctorDao {
 		ResultSet rs = null;
 		try {
 			st = conn.prepareStatement(
-					"SELECT medico.* FROM medico,consulta where medico.crm = consulta.crm GROUP BY medico.crm, consulta.crm ORDER BY COUNT(*) DESC LIMIT 1 \n"
+					"SELECT medico.* FROM medico,consulta where medico.crm = consulta.medicoid GROUP BY medico.crm, consulta.medicoid ORDER BY COUNT(*) DESC LIMIT 1 \n"
 							+ "");
 			rs = st.executeQuery();
 			Map<Integer, Doctor> mapDoc = new HashMap<>();

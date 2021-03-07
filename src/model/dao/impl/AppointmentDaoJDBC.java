@@ -30,9 +30,9 @@ public class AppointmentDaoJDBC implements AppointmentDao {
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement(
-					"INSERT INTO consulta (crm, idpaciente, dataconsulta, descricao) VALUES (?, ?, ?, ?)");
-			st.setInt(1, obj.getCrm().getCrm());
-			st.setInt(2, obj.getIdpaciente().getIdpaciente());
+					"INSERT INTO consulta (medicoid, pacienteid, dataconsulta, descricao) VALUES (?, ?, ?, ?)");
+			st.setInt(1, obj.getMedicoid().getCrm());
+			st.setInt(2, obj.getPacienteid().getIdpaciente());
 			Date x = obj.getDataconsulta();
 			st.setDate(3, new java.sql.Date(x.getTime()));
 			st.setString(4, obj.getDescricao());
@@ -71,8 +71,8 @@ public class AppointmentDaoJDBC implements AppointmentDao {
 
 	private Appointment instantiateApointment(ResultSet rs, Doctor doc, Patient pat) throws SQLException {
 		Appointment appoint = new Appointment();
-		appoint.setCrm(doc);
-		appoint.setIdpaciente(pat);
+		appoint.setMedicoid(doc);
+		appoint.setPacienteid(pat);
 		appoint.setDataconsulta(rs.getDate("dataconsulta"));
 		appoint.setDescricao(rs.getString("descricao"));
 		return appoint;
@@ -85,7 +85,7 @@ public class AppointmentDaoJDBC implements AppointmentDao {
 		ResultSet rs = null;
 		try {
 			st = conn.prepareStatement(
-					"select * from consulta, medico, paciente  where consulta.crm = medico.crm and consulta.idpaciente = paciente.idpaciente\n"
+					"select * from consulta, medico, paciente  where consulta.medicoid = medico.crm and consulta.pacienteid = paciente.idpaciente\n"
 							+ "");
 			rs = st.executeQuery();
 			Map<Integer, Doctor> mapDoc = new HashMap<>();
