@@ -17,7 +17,6 @@ public class Appointment implements Serializable {
 	}
 
 	public Appointment(Doctor medicoid, Patient pacienteid, Date dataconsulta, String descricao) {
-		super();
 		this.medicoid = medicoid;
 		this.pacienteid = pacienteid;
 		this.dataconsulta = dataconsulta;

@@ -67,6 +67,20 @@ public class AppointmentFormController implements Initializable {
 
 	private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 
+	public void setServices(AppointmentService service, DoctorService doctorService, PatientService patientService) {
+		this.service = service;
+		this.doctorService = doctorService;
+		this.patientService = patientService;
+	}
+
+	public void setAppointment(Appointment entity) {
+		this.entity = entity;
+	}
+
+	public void subscribeDataChangeListener(DataChangeListener listener) {
+		dataChangeListeners.add(listener);
+	}
+
 	public void loadAssociatedObjects() {
 		if (doctorService == null || patientService == null) {
 			throw new IllegalStateException("Service was null");
@@ -91,7 +105,7 @@ public class AppointmentFormController implements Initializable {
 		if (entity == null) {
 			throw new IllegalStateException("Entity was null");
 		}
-		if (entity == null) {
+		if (service == null) {
 			throw new IllegalStateException("Service was null");
 		}
 		try {
@@ -101,7 +115,9 @@ public class AppointmentFormController implements Initializable {
 			Utils.currentStage(event).close();
 		} catch (ValidateException e) {
 			setErrorMessages(e.getErrors());
+			e.printStackTrace();
 		} catch (DbException e) {
+			e.printStackTrace();
 			Alerts.showAlert("Error saving object", null, e.getMessage(), AlertType.ERROR);
 		}
 	}
@@ -139,7 +155,7 @@ public class AppointmentFormController implements Initializable {
 
 		return appoint;
 	}
-
+	
 	private void setErrorMessages(Map<String, String> errors) {
 		Set<String> fields = errors.keySet();
 		dateError.setText((fields.contains("dataconsulta") ? errors.get("dataconsulta") : ""));
@@ -148,6 +164,7 @@ public class AppointmentFormController implements Initializable {
 
 	private void initializeComboBoxDoctor() {
 		Callback<ListView<Doctor>, ListCell<Doctor>> factory = lv -> new ListCell<Doctor>() {
+
 			@Override
 			protected void updateItem(Doctor item, boolean empty) {
 				super.updateItem(item, empty);
@@ -159,9 +176,10 @@ public class AppointmentFormController implements Initializable {
 		cbDoctor.setCellFactory(factory);
 		cbDoctor.setButtonCell(factory.call(null));
 	}
-	
+
 	private void initializeComboBoxPatient() {
 		Callback<ListView<Patient>, ListCell<Patient>> factory = lv -> new ListCell<Patient>() {
+
 			@Override
 			protected void updateItem(Patient item, boolean empty) {
 				super.updateItem(item, empty);
@@ -172,21 +190,19 @@ public class AppointmentFormController implements Initializable {
 
 		cbPatient.setCellFactory(factory);
 		cbPatient.setButtonCell(factory.call(null));
+
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		initializeNodes();
+
 		initializeComboBoxDoctor();
 		initializeComboBoxPatient();
 	}
 
 	private void initializeNodes() {
 		loadAssociatedObjects();
-		/*
-		 * new AutoCompleteComboBoxListener<>(cbDoctor); new
-		 * AutoCompleteComboBoxListener<>(cbPatient);
-		 */
 		txtDescription.setWrapText(true);
 	}
 

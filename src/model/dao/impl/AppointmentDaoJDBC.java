@@ -36,7 +36,7 @@ public class AppointmentDaoJDBC implements AppointmentDao {
 			Date x = obj.getDataconsulta();
 			st.setDate(3, new java.sql.Date(x.getTime()));
 			st.setString(4, obj.getDescricao());
-			System.out.println(obj.toString());
+			st.execute();
 		} catch (Exception e) {
 			throw new DbException(e.getMessage());
 		} finally {

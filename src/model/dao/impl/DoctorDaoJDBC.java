@@ -44,7 +44,6 @@ public class DoctorDaoJDBC implements DoctorDao {
 			st.setDate(6, new java.sql.Date(x.getTime()));
 			st.setString(7, obj.getSenha());
 			st.execute();
-			System.out.println(obj.toString());
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
 		} finally {

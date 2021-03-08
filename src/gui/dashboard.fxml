@@ -54,7 +54,7 @@
                      </children></Pane>
                   <Pane layoutX="97.0" layoutY="289.0" prefHeight="220.0" prefWidth="517.0" styleClass="busyContainer">
                      <children>
-                        <Label layoutX="28.0" layoutY="28.0" style="-fx-font-size: 20;" styleClass="fontBold" stylesheets="@application.css" text="Busy doctors" />
+                        <Label layoutX="28.0" layoutY="28.0" style="-fx-font-size: 20;" styleClass="fontBold" stylesheets="@application.css" text="Busy doctor" />
                         <Label layoutX="28.0" layoutY="54.0" style="-fx-text-fill: #7f7d7b; -fx-font-size: 14;" styleClass="smallFont" text="Doctors with more pending appointments" />
                         <Pane layoutX="27.0" layoutY="87.0" prefHeight="100.0" prefWidth="463.0" style="-fx-background-color: #fcf7f8;" styleClass="link">
                            <children>

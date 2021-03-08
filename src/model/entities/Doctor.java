@@ -21,7 +21,6 @@ public class Doctor implements Serializable {
 
 	public Doctor(Integer crm, String nomemed, String cpf, String emailmed, String numcelularmed,
 			Date datanascimentomed, String senha) {
-		super();
 		this.crm = crm;
 		this.nomemed = nomemed;
 		this.cpf = cpf;
@@ -89,11 +88,7 @@ public class Doctor implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Doctor [crm=" + crm + ", nomemed=" + nomemed + ", cpf=" + cpf + ", emailmed=" + emailmed
-				+ ", numcelularmed=" + numcelularmed + ", datanascimentomed=" + datanascimentomed + ", senha=" + senha
-				+ "]";
+		return "" + crm;
 	}
-
-	
 
 }
