@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Locale;
 
 import javafx.event.ActionEvent;
@@ -11,8 +12,6 @@ import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -101,56 +100,59 @@ public class Utils {
 			}
 		});
 	}
-	
-	public static void CPFmask(TextField textField) {
 
-		textField.setOnKeyTyped((KeyEvent event) -> {
-			if ("0123456789".contains(event.getCharacter()) == false) {
-				event.consume();
+	public static boolean isCPF(String CPF) {
+		if (CPF.equals("00000000000") || CPF.equals("11111111111") || CPF.equals("22222222222")
+				|| CPF.equals("33333333333") || CPF.equals("44444444444") || CPF.equals("55555555555")
+				|| CPF.equals("66666666666") || CPF.equals("77777777777") || CPF.equals("88888888888")
+				|| CPF.equals("99999999999") || (CPF.length() != 11))
+			return (false);
+
+		char dig10, dig11;
+		int sm, i, r, num, peso;
+
+		try {
+			sm = 0;
+			peso = 10;
+			for (i = 0; i < 9; i++) {
+
+				num = (int) (CPF.charAt(i) - 48);
+				sm = sm + (num * peso);
+				peso = peso - 1;
 			}
 
-			if (event.getCharacter().trim().length() == 0) {
+			r = 11 - (sm % 11);
+			if ((r == 10) || (r == 11))
+				dig10 = '0';
+			else
+				dig10 = (char) (r + 48);
 
-				if (textField.getText().length() == 4) {
-					textField.setText(textField.getText().substring(0, 3));
-					textField.positionCaret(textField.getText().length());
-				}
-				if (textField.getText().length() == 8) {
-					textField.setText(textField.getText().substring(0, 7));
-					textField.positionCaret(textField.getText().length());
-				}
-				if (textField.getText().length() == 12) {
-					textField.setText(textField.getText().substring(0, 11));
-					textField.positionCaret(textField.getText().length());
-				}
-
-			} else {
-
-				if (textField.getText().length() == 14)
-					event.consume();
-
-				if (textField.getText().length() == 3) {
-					textField.setText(textField.getText() + ".");
-					textField.positionCaret(textField.getText().length());
-				}
-				if (textField.getText().length() == 7) {
-					textField.setText(textField.getText() + ".");
-					textField.positionCaret(textField.getText().length());
-				}
-				if (textField.getText().length() == 11) {
-					textField.setText(textField.getText() + "-");
-					textField.positionCaret(textField.getText().length());
-				}
-
+			sm = 0;
+			peso = 11;
+			for (i = 0; i < 10; i++) {
+				num = (int) (CPF.charAt(i) - 48);
+				sm = sm + (num * peso);
+				peso = peso - 1;
 			}
-		});
 
-		textField.setOnKeyReleased((KeyEvent evt) -> {
+			r = 11 - (sm % 11);
+			if ((r == 10) || (r == 11))
+				dig11 = '0';
+			else
+				dig11 = (char) (r + 48);
 
-			if (!textField.getText().matches("\\d.-*")) {
-				textField.setText(textField.getText().replaceAll("[^\\d.-]", ""));
-				textField.positionCaret(textField.getText().length());
-			}
-		});
+			if ((dig10 == CPF.charAt(9)) && (dig11 == CPF.charAt(10)))
+				return (true);
+			else
+				return (false);
+		} catch (InputMismatchException erro) {
+			return (false);
+		}
 	}
+
+	public static String imprimeCPF(String CPF) {
+		return (CPF.substring(0, 3) + "." + CPF.substring(3, 6) + "." + CPF.substring(6, 9) + "-"
+				+ CPF.substring(9, 11));
+	}
+
 }

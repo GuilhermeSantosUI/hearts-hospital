@@ -11,6 +11,7 @@ import java.util.Set;
 import db.DbException;
 import gui.listener.DataChangeListener;
 import gui.util.Alerts;
+import gui.util.Constraints;
 import gui.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -72,10 +73,11 @@ public class DoctorFormController implements Initializable {
 	private DoctorService service = new DoctorService();
 
 	private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
-	
+
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-
+		Constraints.setTextFieldMaxLength(txtCpf, 11);
+		Constraints.setTextFieldMaxLength(txtCell, 11);
 	}
 
 	@FXML
@@ -118,12 +120,16 @@ public class DoctorFormController implements Initializable {
 		if (txtCpf.getText().isEmpty() || txtCpf.getText().trim().equals("")) {
 			exception.addError("cpf", "Field can't be empty");
 		}
-		doc.setCpf(txtCpf.getText());
+		if (Utils.isCPF(txtCpf.getText())) {
+			doc.setCpf(txtCpf.getText());
+		} else {
+			exception.addError("cpf", "this CPF is invalid");
+		}
 		if (txtEmail.getText().isEmpty() || txtEmail.getText().trim().equals("")) {
 			exception.addError("email", "Field can't be empty");
 		}
 		doc.setEmailmed(txtEmail.getText());
-		if (txtCell.getText().isEmpty() || txtCell.getText().trim().equals("")) {
+		if (txtCell.getText().isEmpty() || txtCell.getText().trim().equals("") && txtCell.getText().length() < 11) {
 			exception.addError("numcelular", "Field can't be empty");
 		}
 		doc.setNumcelularmed(txtCell.getText());

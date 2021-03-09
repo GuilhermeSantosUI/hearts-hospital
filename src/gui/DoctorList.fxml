@@ -33,7 +33,7 @@
                </children></Pane>
          </children>
       </AnchorPane>
-      <TableView fx:id="doctorTable" prefHeight="424.0" prefWidth="1000.0">
+      <TableView fx:id="doctorTable" onSort="#updateTableView" prefHeight="424.0" prefWidth="1000.0">
          <columns>
             <TableColumn fx:id="crmColumn" prefWidth="91.0" text="CRM" />
             <TableColumn fx:id="nameColumn" prefWidth="222.0" text="Nome" />
