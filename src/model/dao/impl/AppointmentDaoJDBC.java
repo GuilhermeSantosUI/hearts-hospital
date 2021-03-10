@@ -85,7 +85,7 @@ public class AppointmentDaoJDBC implements AppointmentDao {
 		ResultSet rs = null;
 		try {
 			st = conn.prepareStatement(
-					"select * from consulta, medico, paciente  where consulta.medicoid = medico.crm and consulta.pacienteid = paciente.idpaciente\n"
+					"SELECT * FROM consulta, medico, paciente WHERE consulta.medicoid = medico.crm AND consulta.pacienteid = paciente.idpaciente\n"
 							+ "");
 			rs = st.executeQuery();
 			Map<Integer, Doctor> mapDoc = new HashMap<>();
