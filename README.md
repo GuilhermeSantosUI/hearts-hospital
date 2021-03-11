@@ -17,8 +17,6 @@ To make this project more organized, we added the DAO (Data Access Object), whic
 - JavaFX ☕
 - PostgreSQL 🐘
 
-Like the description, this is a system developed for educational purposes, requested by the Federal Institute of Sergipe as a form of bimonthly assessment. In this way, it is emphasized in this document that the name of the application is only fictitious to name the "company" for which "we are developing". 😅😊
-
 #### Finished screens ✔️💻
 - [x] SigIn
 - [x] Dashboard
