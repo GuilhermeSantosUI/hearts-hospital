@@ -42,6 +42,12 @@ public class AppointmentFormController implements Initializable {
 	private Label descError;
 
 	@FXML
+	private Label doctorError;
+
+	@FXML
+	private Label patientError;
+	
+	@FXML
 	private ComboBox<Doctor> cbDoctor;
 
 	@FXML
@@ -125,23 +131,24 @@ public class AppointmentFormController implements Initializable {
 	private Appointment getData() {
 		Appointment appoint = new Appointment();
 		ValidateException exception = new ValidateException("Validation error");
-		System.out.println(cbDoctor.getValue());
-	
-		appoint.setMedicoid(cbDoctor.getValue());
-
+		if (cbDoctor.getValue() == null) {
+			exception.addError("medicoid", "Field can't be empty");
+		} else {
+			appoint.setMedicoid(cbDoctor.getValue());
+		}
 		if (dpDate.getValue() == null) {
 			exception.addError("dataconsulta", "Field can't be empty");
 		} else {
 			LocalDate localDate = dpDate.getValue();
 			java.util.Date date = java.sql.Date.valueOf(localDate);
 
-			System.out.println(date);
 			appoint.setDataconsulta(date);
 		}
-
-		System.out.println(cbPatient.getValue());
-
-		appoint.setPacienteid(cbPatient.getValue());
+		if (cbPatient.getValue() == null) {
+			exception.addError("idpaciente", "Field can't be empty");
+		} else {
+			appoint.setPacienteid(cbPatient.getValue());
+		}
 
 		if (txtDescription.getText() == null || txtDescription.getText().trim().equals("")) {
 			exception.addError("descricao", "Field can't be empty");
@@ -155,10 +162,12 @@ public class AppointmentFormController implements Initializable {
 
 		return appoint;
 	}
-	
+
 	private void setErrorMessages(Map<String, String> errors) {
 		Set<String> fields = errors.keySet();
+		doctorError.setText((fields.contains("medicoid") ? errors.get("medicoid") : ""));
 		dateError.setText((fields.contains("dataconsulta") ? errors.get("dataconsulta") : ""));
+		patientError.setText((fields.contains("idpaciente") ? errors.get("idpaciente") : ""));
 		descError.setText((fields.contains("descricao") ? errors.get("descricao") : ""));
 	}
 
@@ -196,7 +205,6 @@ public class AppointmentFormController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		initializeNodes();
-
 		initializeComboBoxDoctor();
 		initializeComboBoxPatient();
 	}

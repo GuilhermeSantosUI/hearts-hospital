@@ -25,5 +25,7 @@
       <TextArea fx:id="txtDescription" layoutX="314.0" layoutY="136.0" prefHeight="107.0" prefWidth="200.0" promptText="Description" />
       <Button layoutX="314.0" layoutY="269.0" mnemonicParsing="false" onAction="#onBtSaveAction" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16;" text="Register" />
       <Label fx:id="dateError" layoutX="88.0" layoutY="244.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
+      <Label fx:id="doctorError" layoutX="88.0" layoutY="177.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
+      <Label fx:id="patientError" layoutX="88.0" layoutY="310.0" style="-fx-text-fill: #ff0800; -fx-font-size: 12;" styleClass="smallFont" />
    </children>
 </Pane>

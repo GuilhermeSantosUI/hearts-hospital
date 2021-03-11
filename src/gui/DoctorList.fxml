@@ -27,7 +27,7 @@
             </ImageView>
             <Label layoutX="147.0" layoutY="57.0" style="-fx-font-size: 28;" styleClass="fontBold" text="List of doctors" />
             <Label layoutX="147.0" layoutY="96.0" style="-fx-font-size: 14;" styleClass="fontLight" text="The entire team of doctors at heart's hospital" />
-            <Pane layoutX="865.0" layoutY="57.0" onMouseClicked="#handleOpenModal" prefHeight="39.0" prefWidth="39.0" styleClass="link">
+            <Pane layoutX="865.0" layoutY="57.0" onMouseClicked="#handleOpenModal" prefHeight="39.0" prefWidth="39.0" style="-fx-cursor: hand;" styleClass="link">
                <children>
                   <Label layoutX="14.0" layoutY="5.0" style="-fx-font-size: 20; -fx-text-fill: #fcf7f8;" styleClass="fontBold" text="+" />
                </children></Pane>

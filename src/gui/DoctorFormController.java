@@ -76,6 +76,7 @@ public class DoctorFormController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		Constraints.setTextFieldMaxLength(txtCrm, 11);
 		Constraints.setTextFieldMaxLength(txtCpf, 11);
 		Constraints.setTextFieldMaxLength(txtCell, 11);
 	}
@@ -111,8 +112,9 @@ public class DoctorFormController implements Initializable {
 		ValidateException exception = new ValidateException("Validation error");
 		if (txtCrm.getText().isEmpty() || txtCrm.getText().trim().equals("")) {
 			exception.addError("crm", "Field can't be empty");
+		} else {
+			doc.setCrm(Integer.parseInt(txtCrm.getText()));
 		}
-		doc.setCrm(Integer.parseInt(txtCrm.getText()));
 		if (txtName.getText().isEmpty() || txtName.getText().trim().equals("")) {
 			exception.addError("nome", "Field can't be empty");
 		}
