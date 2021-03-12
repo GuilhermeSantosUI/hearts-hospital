@@ -13,9 +13,13 @@ public class AppointmentService {
 	public List<Appointment> findAll() {
 		return dao.findAll();
 	}
-	
+
 	public void saveData(Appointment obj) {
 		dao.insert(obj);
-	} 
+	}
+
+	public void remove(Appointment obj) {
+		dao.deleteById(obj.getIdconsulta());
+	}
 
 }

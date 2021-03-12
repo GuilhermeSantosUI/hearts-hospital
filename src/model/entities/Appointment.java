@@ -7,6 +7,7 @@ public class Appointment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private Integer idconsulta;
 	private Doctor medicoid;
 	private Patient pacienteid;
 	private Date dataconsulta;
@@ -16,11 +17,20 @@ public class Appointment implements Serializable {
 
 	}
 
-	public Appointment(Doctor medicoid, Patient pacienteid, Date dataconsulta, String descricao) {
+	public Appointment(Integer idconsulta, Doctor medicoid, Patient pacienteid, Date dataconsulta, String descricao) {
+		this.idconsulta = idconsulta;
 		this.medicoid = medicoid;
 		this.pacienteid = pacienteid;
 		this.dataconsulta = dataconsulta;
 		this.descricao = descricao;
+	}
+
+	public Integer getIdconsulta() {
+		return idconsulta;
+	}
+
+	public void setIdconsulta(Integer idconsulta) {
+		this.idconsulta = idconsulta;
 	}
 
 	public Doctor getMedicoid() {
@@ -57,8 +67,8 @@ public class Appointment implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Appointment [medicoid=" + medicoid + ", pacienteid=" + pacienteid + ", dataconsulta=" + dataconsulta
-				+ ", descricao=" + descricao + "]";
+		return "Appointment [idconsulta=" + idconsulta + ", medicoid=" + medicoid + ", pacienteid=" + pacienteid
+				+ ", dataconsulta=" + dataconsulta + ", descricao=" + descricao + "]";
 	}
 
 }

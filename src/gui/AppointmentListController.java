@@ -87,20 +87,20 @@ public class AppointmentListController implements Initializable {
 
 	private void handleSearchAppointment() {
 		crmColumn.setCellValueFactory(new PropertyValueFactory<>("medicoid"));
-		doctorColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Appointment, String>, ObservableValue<String>>() {
-	        @Override
-	        public ObservableValue<String> call(TableColumn.CellDataFeatures<Appointment
-	        		, String> param) {
-	            return new SimpleStringProperty(param.getValue().getMedicoid().getNomemed());
-	        }
-	    });
-		patientColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Appointment, String>, ObservableValue<String>>() {
-	        @Override
-	        public ObservableValue<String> call(TableColumn.CellDataFeatures<Appointment
-	        		, String> param) {
-	            return new SimpleStringProperty(param.getValue().getPacienteid().getNome());
-	        }
-	    });
+		doctorColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Appointment, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(TableColumn.CellDataFeatures<Appointment, String> param) {
+						return new SimpleStringProperty(param.getValue().getMedicoid().getNomemed());
+					}
+				});
+		patientColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Appointment, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(TableColumn.CellDataFeatures<Appointment, String> param) {
+						return new SimpleStringProperty(param.getValue().getPacienteid().getNome());
+					}
+				});
 		descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("descricao"));
 		dateColumn.setCellValueFactory(new PropertyValueFactory<>("dataconsulta"));
 		Utils.formatTableColumnDate(dateColumn, "dd/MM/yyyy");
@@ -114,7 +114,8 @@ public class AppointmentListController implements Initializable {
 				}
 				String lowerCaseFilter = newValue.toLowerCase();
 
-				if (patient.getPacienteid().getNome().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+				if (patient.getPacienteid().getNome().toLowerCase().indexOf(lowerCaseFilter) != -1
+						|| patient.getMedicoid().getNomemed().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches username
 				} else {
 					return false; // Does not match.

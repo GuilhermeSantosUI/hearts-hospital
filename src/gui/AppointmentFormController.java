@@ -154,8 +154,7 @@ public class AppointmentFormController implements Initializable {
 			exception.addError("descricao", "Field can't be empty");
 		}
 		appoint.setDescricao(txtDescription.getText());
-		System.out.println(txtDescription.getText());
-
+		
 		if (exception.getErrors().size() > 0) {
 			throw exception;
 		}
