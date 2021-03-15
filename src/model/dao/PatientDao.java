@@ -10,4 +10,6 @@ public interface PatientDao {
 		
 	List<Patient> findAll();
 
+	void deleteById(Integer id);
+
 }

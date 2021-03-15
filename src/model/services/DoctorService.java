@@ -28,4 +28,8 @@ public class DoctorService {
 		dao.handleLogin(crmDoctor, passDoctor);
 	}
 
+	public void remove(Doctor obj) {
+		dao.deleteById(obj.getCrm());
+	}
+
 }

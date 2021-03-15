@@ -76,7 +76,7 @@ public class DoctorFormController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		Constraints.setTextFieldMaxLength(txtCrm, 11);
+		Constraints.setTextFieldMaxLength(txtCrm, 5);
 		Constraints.setTextFieldMaxLength(txtCpf, 11);
 		Constraints.setTextFieldMaxLength(txtCell, 11);
 	}

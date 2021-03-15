@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import application.VistaNavigator;
+import gui.util.Alerts;
 import gui.util.Utils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -17,6 +18,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TableColumn;
@@ -126,6 +128,30 @@ public class AppointmentListController implements Initializable {
 		SortedList<Appointment> sortedData = new SortedList<>(filteredData);
 		sortedData.comparatorProperty().bind(appointmentTable.comparatorProperty());
 		appointmentTable.setItems(sortedData);
+	}
+
+	@FXML
+	private void handleEditSelectedValue(MouseEvent event) {
+		if (appointmentTable.getSelectionModel().getSelectedItem() == null) {
+			Alerts.showAlert("Erro ao editar a consulta!", null, "Selecione a consulta na tabela para poder editar!",
+					AlertType.ERROR);
+		} else if (appointmentTable.getSelectionModel().getSelectedItem() != null) {
+			Appointment selectedAppointment = appointmentTable.getSelectionModel().getSelectedItem();
+			System.out.println(selectedAppointment.toString());
+		}
+	}
+
+	@FXML
+	private void handleRemoveSelectedValue(MouseEvent event) {
+		if (appointmentTable.getSelectionModel().getSelectedItem() == null) {
+			Alerts.showAlert("Erro ao remover a consulta!", null, "Selecione a consulta na tabela para poder deletar!",
+					AlertType.ERROR);
+		} else if (appointmentTable.getSelectionModel().getSelectedItem() != null) {
+			Appointment selectedAppointment = appointmentTable.getSelectionModel().getSelectedItem();
+			service.remove(selectedAppointment);
+			Alerts.showAlert("Consulta removida com sucesso!", null, "A consulta foi removida da tabela!",
+					AlertType.ERROR);
+		}
 	}
 
 	@Override

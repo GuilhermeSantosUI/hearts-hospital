@@ -86,4 +86,18 @@ public class PatientDaoJDBC implements PatientDao {
 		}
 	}
 
+	@Override
+	public void deleteById(Integer id) {
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("DELETE FROM paciente WHERE idpaciente = ? ");
+			st.setInt(1, id);
+			st.executeUpdate();
+		} catch (Exception e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}
+	}
+
 }

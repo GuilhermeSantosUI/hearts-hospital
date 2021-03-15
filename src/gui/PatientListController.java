@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import application.VistaNavigator;
 import gui.listener.DataChangeListener;
+import gui.util.Alerts;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TableColumn;
@@ -119,6 +121,19 @@ public class PatientListController implements Initializable, DataChangeListener 
 		SortedList<Patient> sortedData = new SortedList<>(filteredData);
 		sortedData.comparatorProperty().bind(patientTable.comparatorProperty());
 		patientTable.setItems(sortedData);
+	}
+	
+	@FXML
+	private void handleRemoveSelectedValue(MouseEvent event) {
+		if (patientTable.getSelectionModel().getSelectedItem() == null) {
+			Alerts.showAlert("Erro ao remover a consulta!", null, "Selecione a consulta na tabela para poder deletar!",
+					AlertType.ERROR);
+		} else if (patientTable.getSelectionModel().getSelectedItem() != null) {
+			Patient selectedPatient = patientTable.getSelectionModel().getSelectedItem();
+			service.remove(selectedPatient);
+			Alerts.showAlert("Consulta removida com sucesso!", null, "A consulta foi removida da tabela!",
+					AlertType.ERROR);
+		}
 	}
 
 	@FXML

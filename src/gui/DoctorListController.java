@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import application.VistaNavigator;
 import gui.listener.DataChangeListener;
+import gui.util.Alerts;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TableColumn;
@@ -32,30 +34,30 @@ public class DoctorListController implements Initializable, DataChangeListener {
 
 	@FXML
 	private VBox doctorsContainer;
-	
+
 	@FXML
-    private TableView<Doctor> doctorTable;
+	private TableView<Doctor> doctorTable;
 
-    @FXML
-    private TableColumn<Doctor, Integer> crmColumn;
+	@FXML
+	private TableColumn<Doctor, Integer> crmColumn;
 
-    @FXML
-    private TableColumn<Doctor, String> nameColumn;
+	@FXML
+	private TableColumn<Doctor, String> nameColumn;
 
-    @FXML
-    private TableColumn<Doctor, String> cpfColumn;
+	@FXML
+	private TableColumn<Doctor, String> cpfColumn;
 
-    @FXML
-    private TableColumn<Doctor, String> emailColumn;
+	@FXML
+	private TableColumn<Doctor, String> emailColumn;
 
-    @FXML
-    private TableColumn<Doctor, String> cellColumn;
+	@FXML
+	private TableColumn<Doctor, String> cellColumn;
 
-    @FXML
-    private TableColumn<Doctor, Date> birthColumn;
+	@FXML
+	private TableColumn<Doctor, Date> birthColumn;
 
-    @FXML
-    private TableColumn<Doctor, String> passColumn;
+	@FXML
+	private TableColumn<Doctor, String> passColumn;
 
 	@FXML
 	private TextField txtSearch;
@@ -63,7 +65,7 @@ public class DoctorListController implements Initializable, DataChangeListener {
 	private ObservableList<Doctor> obsList;
 
 	private DoctorService service = new DoctorService();
-	
+
 	@FXML
 	void goBack() {
 		VistaNavigator.loadVista(VistaNavigator.DASHBOARD);
@@ -88,7 +90,7 @@ public class DoctorListController implements Initializable, DataChangeListener {
 		dialog.getDialogPane().getScene().getWindow();
 		dialog.showAndWait();
 	}
-	
+
 	private void handleSearchPatient() {
 		crmColumn.setCellValueFactory(new PropertyValueFactory<>("crm"));
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("nomemed"));
@@ -121,7 +123,25 @@ public class DoctorListController implements Initializable, DataChangeListener {
 		doctorTable.setItems(sortedData);
 	}
 
-	
+	@FXML
+	private void handleRemoveSelectedValue(MouseEvent event) {
+		if (doctorTable.getSelectionModel().getSelectedItem() == null) {
+			Alerts.showAlert("Erro ao remover a consulta!", null, "Selecione a consulta na tabela para poder deletar!",
+					AlertType.ERROR);
+		} else if (doctorTable.getSelectionModel().getSelectedItem() != null) {
+			Doctor selectedDoctor = doctorTable.getSelectionModel().getSelectedItem();
+			try {
+				service.remove(selectedDoctor);
+				Alerts.showAlert("Consulta removida com sucesso!", null, "A consulta foi removida da tabela!",
+						AlertType.ERROR);
+			} catch (Exception e) {
+				Alerts.showAlert("O medico não pode ser removido!",
+						"Existe uma relação com esse medico em outra pagina",
+						"Por conta de uma relação o medico não pode ser removido!", AlertType.ERROR);
+			}
+		}
+	}
+
 	@FXML
 	private void updateTableView() {
 		if (service == null) {
@@ -141,5 +161,5 @@ public class DoctorListController implements Initializable, DataChangeListener {
 	public void onDataChanged() {
 		updateTableView();
 	}
-	
+
 }

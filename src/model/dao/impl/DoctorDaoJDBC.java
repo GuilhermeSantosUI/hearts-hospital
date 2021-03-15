@@ -152,4 +152,18 @@ public class DoctorDaoJDBC implements DoctorDao {
 		return doc;
 	}
 
+	@Override
+	public void deleteById(Integer crm) {
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("DELETE FROM medico WHERE crm = ? ");
+			st.setInt(1, crm);
+			st.executeUpdate();
+		} catch (Exception e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}
+	}
+
 }

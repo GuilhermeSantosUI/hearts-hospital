@@ -16,7 +16,11 @@ public class PatientService {
 	
 	public void saveData(Patient obj) {
 		dao.insert(obj);
-	} 
+	}
+
+	public void remove(Patient obj) {
+		dao.deleteById(obj.getIdpaciente());
+	}
 
 }
 			

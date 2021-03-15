@@ -15,5 +15,7 @@ public interface DoctorDao {
 	Doctor findBusyDoctor();
 
 	void handleLogin(TextField crmDoctor, PasswordField passDoctor);
-
+	
+	void deleteById(Integer crm);
+	
 }

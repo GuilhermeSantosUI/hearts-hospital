@@ -19,18 +19,36 @@
                   <Label layoutX="14.0" layoutY="5.0" style="-fx-text-fill: #ff0800; -fx-font-size: 20;" styleClass="fontBold" text="&lt;" />
                </children>
             </Pane>
-            <TextField fx:id="txtSearch" layoutX="676.0" layoutY="59.0" prefHeight="35.0" prefWidth="180.0" styleClass="textInput" />
-            <ImageView fitHeight="14.0" fitWidth="14.0" layoutX="691.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="txtSearch" layoutX="615.0" layoutY="59.0" prefHeight="35.0" prefWidth="180.0" styleClass="textInput" />
+            <ImageView fitHeight="14.0" fitWidth="14.0" layoutX="630.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/search.png" />
                </image>
             </ImageView>
             <Label layoutX="147.0" layoutY="57.0" style="-fx-font-size: 28;" styleClass="fontBold" text="List of doctors" />
             <Label layoutX="147.0" layoutY="96.0" style="-fx-font-size: 14;" styleClass="fontLight" text="The entire team of doctors at heart's hospital" />
-            <Pane layoutX="865.0" layoutY="57.0" onMouseClicked="#handleOpenModal" prefHeight="39.0" prefWidth="39.0" style="-fx-cursor: hand;" styleClass="link">
+            <Pane layoutX="803.0" layoutY="57.0" onMouseClicked="#handleOpenModal" prefHeight="39.0" prefWidth="39.0" style="-fx-cursor: hand;" styleClass="link">
                <children>
                   <Label layoutX="14.0" layoutY="5.0" style="-fx-font-size: 20; -fx-text-fill: #fcf7f8;" styleClass="fontBold" text="+" />
                </children></Pane>
+            <Pane layoutX="846.0" layoutY="57.0" onMouseClicked="#handleOpenModal" prefHeight="39.0" prefWidth="27.0" style="-fx-cursor: hand;" styleClass="link">
+               <children>
+                  <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="6.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/edit.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="877.0" layoutY="57.0" onMouseClicked="#handleRemoveSelectedValue" prefHeight="39.0" prefWidth="27.0" style="-fx-cursor: hand;" styleClass="link">
+               <children>
+                  <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="6.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/delete.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
          </children>
       </AnchorPane>
       <TableView fx:id="doctorTable" onSort="#updateTableView" prefHeight="424.0" prefWidth="1000.0">
