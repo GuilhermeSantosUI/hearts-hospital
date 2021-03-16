@@ -64,7 +64,7 @@ public class PatientDaoJDBC implements PatientDao {
 			rs = st.executeQuery();
 
 			List<Patient> list = new ArrayList<>();
-			
+
 			while (rs.next()) {
 				Patient obj = new Patient();
 				obj.setIdpaciente(rs.getInt("idpaciente"));
@@ -92,6 +92,29 @@ public class PatientDaoJDBC implements PatientDao {
 		try {
 			st = conn.prepareStatement("DELETE FROM paciente WHERE idpaciente = ? ");
 			st.setInt(1, id);
+			st.executeUpdate();
+		} catch (Exception e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}
+	}
+
+	@Override
+	public void update(Patient obj) {
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement(
+					"UPDATE paciente SET nome = ?, sexo = ?, datanascimento = ?, endereco = ?, telefone = ?, numcelular = ?, email = ? WHERE idpaciente = ?");
+			st.setString(1, obj.getNome());
+			st.setString(2, obj.getSexo());
+			Date x = obj.getDatanascimento();
+			st.setDate(3, new java.sql.Date(x.getTime()));
+			st.setString(4, obj.getEndereco());
+			st.setString(5, obj.getTelefone());
+			st.setString(6, obj.getNumcelular());
+			st.setString(7, obj.getEmail());
+			st.setInt(8, obj.getIdpaciente());
 			st.executeUpdate();
 		} catch (Exception e) {
 			throw new DbException(e.getMessage());

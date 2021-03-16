@@ -20,8 +20,12 @@ public class DoctorService {
 		return dao.findBusyDoctor();
 	}
 
-	public void saveData(Doctor obj) {
-		dao.insert(obj);
+	public void saveOrUpdate(Doctor obj) {
+		if (obj.getCrm() == null) {
+			dao.insert(obj);
+		} else {
+			dao.update(obj);
+		}
 	}
 
 	public void handleLogin(TextField crmDoctor, PasswordField passDoctor) {

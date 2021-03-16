@@ -35,7 +35,7 @@
                   <Image url="@images/search.png" />
                </image>
             </ImageView>
-            <Pane layoutX="846.0" layoutY="57.0" onMouseClicked="#handleEditSelectedValue" prefHeight="39.0" prefWidth="27.0" style="-fx-cursor: hand; -fx-background-color: #4e8098;" styleClass="link">
+            <Pane layoutX="846.0" layoutY="57.0" onMouseClicked="#handleOpenModalEdit" prefHeight="39.0" prefWidth="27.0" style="-fx-cursor: hand; -fx-background-color: #4e8098;" styleClass="link">
                <children>
                   <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="6.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -10,6 +10,8 @@ public interface AppointmentDao {
 			
 	List<Appointment> findAll();
 	
+	void update(Appointment obj);
+	
 	void deleteById(Integer id);
 
 	

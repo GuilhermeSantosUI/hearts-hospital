@@ -18,6 +18,8 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -27,10 +29,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Callback;
 import model.entities.Appointment;
 import model.services.AppointmentService;
+import model.services.DoctorService;
+import model.services.PatientService;
 
 public class AppointmentListController implements Initializable {
 
@@ -67,6 +72,14 @@ public class AppointmentListController implements Initializable {
 		VistaNavigator.loadVista(VistaNavigator.DASHBOARD);
 	}
 
+	public TableView<Appointment> getAppointmentTable() {
+		return appointmentTable;
+	}
+
+	public void setAppointmentTable(TableView<Appointment> appointmentTable) {
+		this.appointmentTable = appointmentTable;
+	}
+
 	@FXML
 	private void handleOpenModal(MouseEvent event) {
 		Dialog<ButtonType> dialog = new Dialog<>();
@@ -85,6 +98,32 @@ public class AppointmentListController implements Initializable {
 		dialog.setContentText(null);
 		dialog.getDialogPane().getScene().getWindow();
 		dialog.showAndWait();
+	}
+
+	@FXML
+	private void handleOpenModalEdit(MouseEvent event) throws IOException {
+		if (appointmentTable.getSelectionModel().getSelectedItem() == null) {
+			Alerts.showAlert("Erro ao editar a consulta!", null, "Selecione a consulta na tabela para poder editar!",
+					AlertType.ERROR);
+		} else if (appointmentTable.getSelectionModel().getSelectedItem() != null) {
+			Dialog<ButtonType> dialog = new Dialog<>();
+			Window window = dialog.getDialogPane().getScene().getWindow();
+			window.setOnCloseRequest(e -> window.hide());
+			dialog.initOwner(appointmentContainer.getScene().getWindow());
+			dialog.setTitle("Edit appointment");
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AppointmentForm.fxml"));
+			Parent root = (Parent) fxmlLoader.load();
+			AppointmentFormController controller = fxmlLoader.getController();
+			controller.setAppointment(appointmentTable.getSelectionModel().getSelectedItem());
+			controller.setServices(new AppointmentService(), new DoctorService(), new PatientService());
+			controller.loadAssociatedObjects();
+			controller.handleUpdateData();
+			Scene newScene = new Scene(root);
+			Stage newStage = new Stage();
+			newStage.setScene(newScene);
+			newStage.show();
+			VistaNavigator.loadVista(VistaNavigator.APPOINTMENTLIST);
+		}
 	}
 
 	private void handleSearchAppointment() {
@@ -131,27 +170,33 @@ public class AppointmentListController implements Initializable {
 	}
 
 	@FXML
-	private void handleEditSelectedValue(MouseEvent event) {
-		if (appointmentTable.getSelectionModel().getSelectedItem() == null) {
-			Alerts.showAlert("Erro ao editar a consulta!", null, "Selecione a consulta na tabela para poder editar!",
-					AlertType.ERROR);
-		} else if (appointmentTable.getSelectionModel().getSelectedItem() != null) {
-			Appointment selectedAppointment = appointmentTable.getSelectionModel().getSelectedItem();
-			System.out.println(selectedAppointment.toString());
-		}
-	}
-
-	@FXML
 	private void handleRemoveSelectedValue(MouseEvent event) {
 		if (appointmentTable.getSelectionModel().getSelectedItem() == null) {
 			Alerts.showAlert("Erro ao remover a consulta!", null, "Selecione a consulta na tabela para poder deletar!",
 					AlertType.ERROR);
 		} else if (appointmentTable.getSelectionModel().getSelectedItem() != null) {
 			Appointment selectedAppointment = appointmentTable.getSelectionModel().getSelectedItem();
-			service.remove(selectedAppointment);
-			Alerts.showAlert("Consulta removida com sucesso!", null, "A consulta foi removida da tabela!",
-					AlertType.ERROR);
+			try {
+				service.remove(selectedAppointment);
+				Alerts.showAlert("Consulta removida com sucesso!", null, "A consulta foi removida da tabela!",
+						AlertType.CONFIRMATION);
+				updateTableView();
+			} catch (Exception e) {
+				Alerts.showAlert("Tivemos algum problema!", "Parece que aconteceu algo inesperado no sistema!",
+						"Tente novamente mais tarde!", AlertType.ERROR);
+			}
+
 		}
+	}
+	
+
+	public void updateTableView() {
+		if (service == null) {
+			throw new IllegalStateException("Service was null");
+		}
+		List<Appointment> list = service.findAll();
+		this.obsList = FXCollections.observableArrayList(list);
+		this.appointmentTable.setItems(this.obsList);
 	}
 
 	@Override

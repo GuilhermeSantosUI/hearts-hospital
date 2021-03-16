@@ -13,6 +13,8 @@ public interface DoctorDao {
 	List<Doctor> findAll();
 
 	Doctor findBusyDoctor();
+	
+	void update(Doctor obj);
 
 	void handleLogin(TextField crmDoctor, PasswordField passDoctor);
 	

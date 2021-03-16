@@ -126,23 +126,23 @@ public class DoctorListController implements Initializable, DataChangeListener {
 	@FXML
 	private void handleRemoveSelectedValue(MouseEvent event) {
 		if (doctorTable.getSelectionModel().getSelectedItem() == null) {
-			Alerts.showAlert("Erro ao remover a consulta!", null, "Selecione a consulta na tabela para poder deletar!",
+			Alerts.showAlert("Erro ao remover o medico!", null, "Selecione a  na tabela para poder deletar!",
 					AlertType.ERROR);
 		} else if (doctorTable.getSelectionModel().getSelectedItem() != null) {
 			Doctor selectedDoctor = doctorTable.getSelectionModel().getSelectedItem();
 			try {
 				service.remove(selectedDoctor);
-				Alerts.showAlert("Consulta removida com sucesso!", null, "A consulta foi removida da tabela!",
-						AlertType.ERROR);
+				Alerts.showAlert("Medico removido com sucesso!", null, "O medico foi removida da tabela!",
+						AlertType.CONFIRMATION);
+				updateTableView();
 			} catch (Exception e) {
 				Alerts.showAlert("O medico não pode ser removido!",
-						"Existe uma relação com esse medico em outra pagina",
-						"Por conta de uma relação o medico não pode ser removido!", AlertType.ERROR);
+						"Para deletar " + (selectedDoctor.getNomemed()) + ", finalize a consulta!",
+						"O medico tem consulta pendente!", AlertType.ERROR);
 			}
 		}
 	}
 
-	@FXML
 	private void updateTableView() {
 		if (service == null) {
 			throw new IllegalStateException("Service was null");

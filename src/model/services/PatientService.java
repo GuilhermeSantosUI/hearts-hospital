@@ -14,8 +14,12 @@ public class PatientService {
 		return dao.findAll();
 	}
 	
-	public void saveData(Patient obj) {
-		dao.insert(obj);
+	public void saveOrUpdate(Patient obj) {
+		if (obj.getIdpaciente() == null) {
+			dao.insert(obj);
+		} else {
+			dao.update(obj);
+		}
 	}
 
 	public void remove(Patient obj) {

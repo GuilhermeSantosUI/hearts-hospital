@@ -122,21 +122,27 @@ public class PatientListController implements Initializable, DataChangeListener 
 		sortedData.comparatorProperty().bind(patientTable.comparatorProperty());
 		patientTable.setItems(sortedData);
 	}
-	
+
 	@FXML
 	private void handleRemoveSelectedValue(MouseEvent event) {
 		if (patientTable.getSelectionModel().getSelectedItem() == null) {
-			Alerts.showAlert("Erro ao remover a consulta!", null, "Selecione a consulta na tabela para poder deletar!",
+			Alerts.showAlert("Erro ao remover a paciente!", null, "Selecione o paciente na tabela para poder deletar!",
 					AlertType.ERROR);
 		} else if (patientTable.getSelectionModel().getSelectedItem() != null) {
 			Patient selectedPatient = patientTable.getSelectionModel().getSelectedItem();
-			service.remove(selectedPatient);
-			Alerts.showAlert("Consulta removida com sucesso!", null, "A consulta foi removida da tabela!",
-					AlertType.ERROR);
+			try {
+				service.remove(selectedPatient);
+				Alerts.showAlert("Medico removida com sucesso!", null, "O medico foi removida da tabela!",
+						AlertType.CONFIRMATION);
+				updateTableView();
+			} catch (Exception e) {
+				Alerts.showAlert("Tivemos algum problema!", "Parece que aconteceu algo inesperado no sistema!",
+						"Tente novamente mais tarde!", AlertType.ERROR);
+			}
+
 		}
 	}
 
-	@FXML
 	private void updateTableView() {
 		if (service == null) {
 			throw new IllegalStateException("Service was null");

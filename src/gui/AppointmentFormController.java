@@ -1,8 +1,11 @@
 package gui;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -24,6 +27,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.util.Callback;
 import model.entities.Appointment;
 import model.entities.Doctor;
@@ -46,7 +50,7 @@ public class AppointmentFormController implements Initializable {
 
 	@FXML
 	private Label patientError;
-	
+
 	@FXML
 	private ComboBox<Doctor> cbDoctor;
 
@@ -58,7 +62,10 @@ public class AppointmentFormController implements Initializable {
 
 	@FXML
 	private TextArea txtDescription;
-
+	
+	@FXML
+	private TextField txtId;
+	
 	private ObservableList<Doctor> obsListDoctor;
 
 	private ObservableList<Patient> obsListPatient;
@@ -70,6 +77,8 @@ public class AppointmentFormController implements Initializable {
 	private Appointment entity = new Appointment();
 
 	private AppointmentService service = new AppointmentService();
+	
+	private AppointmentListController controller = new AppointmentListController();
 
 	private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 
@@ -116,9 +125,10 @@ public class AppointmentFormController implements Initializable {
 		}
 		try {
 			entity = getData();
-			service.saveData(entity);
+			service.saveOrUpdate(entity);
 			notifyDataChangeListeners();
 			Utils.currentStage(event).close();
+			controller.updateTableView();
 		} catch (ValidateException e) {
 			setErrorMessages(e.getErrors());
 			e.printStackTrace();
@@ -131,6 +141,8 @@ public class AppointmentFormController implements Initializable {
 	private Appointment getData() {
 		Appointment appoint = new Appointment();
 		ValidateException exception = new ValidateException("Validation error");
+		
+		appoint.setIdconsulta(entity.getIdconsulta());
 		if (cbDoctor.getValue() == null) {
 			exception.addError("medicoid", "Field can't be empty");
 		} else {
@@ -168,6 +180,38 @@ public class AppointmentFormController implements Initializable {
 		dateError.setText((fields.contains("dataconsulta") ? errors.get("dataconsulta") : ""));
 		patientError.setText((fields.contains("idpaciente") ? errors.get("idpaciente") : ""));
 		descError.setText((fields.contains("descricao") ? errors.get("descricao") : ""));
+	}
+
+	public void handleUpdateData() {
+		if (entity == null) {
+			throw new IllegalStateException("Entity was null");
+		}
+		if (entity.getMedicoid() == null) {
+			cbDoctor.getSelectionModel().selectFirst();
+		} else {
+			cbDoctor.setValue(entity.getMedicoid());
+		}
+
+		Date x = entity.getDataconsulta();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		if (x != null) {
+			String s = sdf.format(x.getTime());
+			dpDate.setValue(LOCAL_DATE(String.valueOf(s)));
+		}
+
+		if (entity.getPacienteid() == null) {
+			cbPatient.getSelectionModel().selectFirst();
+		} else {
+			cbPatient.setValue(entity.getPacienteid());
+		}
+		
+		txtDescription.setText(entity.getDescricao());
+	}
+
+	private final LocalDate LOCAL_DATE(String dateString) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate localDate = LocalDate.parse(dateString, formatter);
+		return localDate;
 	}
 
 	private void initializeComboBoxDoctor() {

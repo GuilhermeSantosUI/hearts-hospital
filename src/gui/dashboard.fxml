@@ -68,11 +68,18 @@
                   </Pane>
                   <Pane layoutX="663.0" layoutY="112.0" prefHeight="399.0" prefWidth="241.0" style="-fx-background-color: #eef2fd;" styleClass="link">
                      <children>
-                        <ImageView fitHeight="294.0" fitWidth="338.0" layoutX="-29.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="294.0" fitWidth="338.0" layoutX="-29.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/hummans.png" />
                            </image>
                         </ImageView>
+                        <ImageView fitHeight="54.0" fitWidth="55.0" layoutX="25.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/love.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="90.0" layoutY="322.0" style="-fx-font-size: 28;" styleClass="fontBold" text="Stay safe" />
+                        <Label layoutX="108.0" layoutY="356.0" style="-fx-font-size: 20;" styleClass="fontBold" stylesheets="@application.css" text="Stay well" />
                      </children></Pane>
                </children>
             </AnchorPane>

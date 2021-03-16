@@ -98,7 +98,7 @@ public class PatientFormController implements Initializable {
 		}
 		try {
 			entity = getData();
-			service.saveData(entity);
+			service.saveOrUpdate(entity);
 			notifyDataChangeListeners();
 			Utils.currentStage(event).close();
 		} catch (ValidateException e) {

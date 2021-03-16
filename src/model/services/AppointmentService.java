@@ -14,8 +14,12 @@ public class AppointmentService {
 		return dao.findAll();
 	}
 
-	public void saveData(Appointment obj) {
-		dao.insert(obj);
+	public void saveOrUpdate(Appointment obj) {
+		if (obj.getIdconsulta() == null) {
+			dao.insert(obj);
+		} else {
+			dao.update(obj);
+		}
 	}
 
 	public void remove(Appointment obj) {

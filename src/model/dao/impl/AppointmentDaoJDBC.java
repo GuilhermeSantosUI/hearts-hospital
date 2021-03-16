@@ -98,10 +98,8 @@ public class AppointmentDaoJDBC implements AppointmentDao {
 		ResultSet rs = null;
 		try {
 			st = conn.prepareStatement(
-					"SELECT * FROM consulta, medico, paciente \n"
-					+ "WHERE consulta.medicoid = medico.crm AND\n"
-					+ "consulta.pacienteid = paciente.idpaciente \n"
-					+ "order by dataconsulta");
+					"SELECT * FROM consulta, medico, paciente \n" + "WHERE consulta.medicoid = medico.crm AND\n"
+							+ "consulta.pacienteid = paciente.idpaciente \n" + "order by dataconsulta");
 			rs = st.executeQuery();
 			Map<Integer, Doctor> mapDoc = new HashMap<>();
 			Map<Integer, Patient> mapPat = new HashMap<>();
@@ -133,6 +131,26 @@ public class AppointmentDaoJDBC implements AppointmentDao {
 		try {
 			st = conn.prepareStatement("DELETE FROM consulta WHERE idconsulta = ? ");
 			st.setInt(1, id);
+			st.executeUpdate();
+		} catch (Exception e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}
+	}
+
+	@Override
+	public void update(Appointment obj) {
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement(
+					"UPDATE consulta SET medicoid = ?, pacienteid = ?, dataconsulta = ?, descricao = ? WHERE idconsulta = ?");
+			st.setInt(1, obj.getMedicoid().getCrm());
+			st.setInt(2, obj.getPacienteid().getIdpaciente());
+			Date x = obj.getDataconsulta();
+			st.setDate(3, new java.sql.Date(x.getTime()));
+			st.setString(4, obj.getDescricao());
+			st.setInt(5, obj.getIdconsulta());
 			st.executeUpdate();
 		} catch (Exception e) {
 			throw new DbException(e.getMessage());

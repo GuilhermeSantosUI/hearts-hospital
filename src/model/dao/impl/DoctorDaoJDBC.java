@@ -32,8 +32,9 @@ public class DoctorDaoJDBC implements DoctorDao {
 	public void insert(Doctor obj) {
 		PreparedStatement st = null;
 		try {
-			st = conn.prepareStatement("INSERT INTO medico (crm, nomemed, cpf, emailmed, numcelularmed, datanascimentomed, senha)"
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?)");
+			st = conn.prepareStatement(
+					"INSERT INTO medico (crm, nomemed, cpf, emailmed, numcelularmed, datanascimentomed, senha)"
+							+ "VALUES (?, ?, ?, ?, ?, ?, ?)");
 
 			st.setInt(1, obj.getCrm());
 			st.setString(2, obj.getNomemed());
@@ -158,6 +159,28 @@ public class DoctorDaoJDBC implements DoctorDao {
 		try {
 			st = conn.prepareStatement("DELETE FROM medico WHERE crm = ? ");
 			st.setInt(1, crm);
+			st.executeUpdate();
+		} catch (Exception e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}
+	}
+
+	@Override
+	public void update(Doctor obj) {
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement(
+					"UPDATE medico SET crm = ?, nomemed = ?, cpf = ?, emailmed = ?, numcelularmed = ?, datanascimentomed = ?, senha = ? WHERE crm = ?");
+			st.setInt(1, obj.getCrm());
+			st.setString(2, obj.getNomemed());
+			st.setString(3, obj.getCpf());
+			st.setString(4, obj.getEmailmed());
+			st.setString(5, obj.getNumcelularmed());
+			Date x = obj.getDatanascimentomed();
+			st.setDate(6, new java.sql.Date(x.getTime()));
+			st.setString(7, obj.getSenha());
 			st.executeUpdate();
 		} catch (Exception e) {
 			throw new DbException(e.getMessage());
