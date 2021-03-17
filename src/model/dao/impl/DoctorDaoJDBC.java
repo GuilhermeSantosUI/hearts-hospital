@@ -44,7 +44,17 @@ public class DoctorDaoJDBC implements DoctorDao {
 			Date x = obj.getDatanascimentomed();
 			st.setDate(6, new java.sql.Date(x.getTime()));
 			st.setString(7, obj.getSenha());
-			st.execute();
+			int rowsAffected = st.executeUpdate();
+			if (rowsAffected > 0) {
+				ResultSet rs = st.getGeneratedKeys();
+				if (rs.next()) {
+					int id = rs.getInt(1);
+					obj.setIdmedico(id);
+				}
+				DB.closeResultSet(rs);
+			} else {
+				throw new DbException("Unexpected error! No rows affected.");
+			}
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
 		} finally {
@@ -58,8 +68,9 @@ public class DoctorDaoJDBC implements DoctorDao {
 		ResultSet rs = null;
 		try {
 			st = conn.prepareStatement(
-					"SELECT medico.* FROM medico,consulta where medico.crm = consulta.medicoid GROUP BY medico.crm, consulta.medicoid ORDER BY COUNT(*) DESC LIMIT 1 \n"
-							+ "");
+					"SELECT medico.* FROM medico,consulta \n" + "where medico.crm = consulta.medicoid \n"
+							+ "GROUP BY medico.idmedico,medico.crm, consulta.medicoid \n"
+							+ "ORDER BY COUNT(*) DESC LIMIT 1 " + "");
 			rs = st.executeQuery();
 			Map<Integer, Doctor> mapDoc = new HashMap<>();
 			if (rs.next()) {
@@ -91,6 +102,7 @@ public class DoctorDaoJDBC implements DoctorDao {
 
 			while (rs.next()) {
 				Doctor obj = new Doctor();
+				obj.setIdmedico(rs.getInt("idmedico"));
 				obj.setCrm(rs.getInt("crm"));
 				obj.setNomemed(rs.getString("nomemed"));
 				obj.setCpf(rs.getString("cpf"));
@@ -143,6 +155,7 @@ public class DoctorDaoJDBC implements DoctorDao {
 
 	private Doctor instantiateDoctor(ResultSet rs) throws SQLException {
 		Doctor doc = new Doctor();
+		doc.setIdmedico(rs.getInt("idmedico"));
 		doc.setCrm(rs.getInt("crm"));
 		doc.setNomemed(rs.getString("nomemed"));
 		doc.setCpf(rs.getString("cpf"));
@@ -172,7 +185,7 @@ public class DoctorDaoJDBC implements DoctorDao {
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement(
-					"UPDATE medico SET crm = ?, nomemed = ?, cpf = ?, emailmed = ?, numcelularmed = ?, datanascimentomed = ?, senha = ? WHERE crm = ?");
+					"UPDATE medico SET crm = ?, nomemed = ?, cpf = ?, emailmed = ?, numcelularmed = ?, datanascimentomed = ?, senha = ? WHERE idmedico = ?");
 			st.setInt(1, obj.getCrm());
 			st.setString(2, obj.getNomemed());
 			st.setString(3, obj.getCpf());
@@ -181,6 +194,7 @@ public class DoctorDaoJDBC implements DoctorDao {
 			Date x = obj.getDatanascimentomed();
 			st.setDate(6, new java.sql.Date(x.getTime()));
 			st.setString(7, obj.getSenha());
+			st.setInt(8, obj.getIdmedico());
 			st.executeUpdate();
 		} catch (Exception e) {
 			throw new DbException(e.getMessage());

@@ -65,7 +65,7 @@ public class AppointmentFormController implements Initializable {
 	
 	@FXML
 	private TextField txtId;
-	
+			
 	private ObservableList<Doctor> obsListDoctor;
 
 	private ObservableList<Patient> obsListPatient;

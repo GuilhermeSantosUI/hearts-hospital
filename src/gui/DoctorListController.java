@@ -115,7 +115,7 @@ public class DoctorListController implements Initializable, DataChangeListener {
 			Stage newStage = new Stage();
 			newStage.setScene(newScene);
 			newStage.show();
-			VistaNavigator.loadVista(VistaNavigator.APPOINTMENTLIST);
+			VistaNavigator.loadVista(VistaNavigator.DOCTORLIST);
 		}
 	}
 

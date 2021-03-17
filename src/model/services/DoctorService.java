@@ -21,7 +21,7 @@ public class DoctorService {
 	}
 
 	public void saveOrUpdate(Doctor obj) {
-		if (obj.getCrm() == null) {
+		if (obj.getIdmedico() == null) {
 			dao.insert(obj);
 		} else {
 			dao.update(obj);

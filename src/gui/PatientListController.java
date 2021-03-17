@@ -17,6 +17,8 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -26,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 import model.entities.Patient;
 import model.services.PatientService;
@@ -89,6 +92,31 @@ public class PatientListController implements Initializable, DataChangeListener 
 		dialog.setContentText(null);
 		dialog.getDialogPane().getScene().getWindow();
 		dialog.showAndWait();
+	}
+	
+	@FXML
+	private void handleOpenModalEdit(MouseEvent event) throws IOException {
+		if (patientTable.getSelectionModel().getSelectedItem() == null) {
+			Alerts.showAlert("Erro ao editar a consulta!", null, "Selecione a consulta na tabela para poder editar!",
+					AlertType.ERROR);
+		} else if (patientTable.getSelectionModel().getSelectedItem() != null) {
+			Dialog<ButtonType> dialog = new Dialog<>();
+			Window window = dialog.getDialogPane().getScene().getWindow();
+			window.setOnCloseRequest(e -> window.hide());
+			dialog.initOwner(patientContainer.getScene().getWindow());
+			dialog.setTitle("Edit patient");
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PatientForm.fxml"));
+			Parent root = (Parent) fxmlLoader.load();
+			PatientFormController controller = fxmlLoader.getController();
+			controller.setPatient(patientTable.getSelectionModel().getSelectedItem());
+			controller.setServices(new PatientService());
+			controller.handleUpdateData();
+			Scene newScene = new Scene(root);
+			Stage newStage = new Stage();
+			newStage.setScene(newScene);
+			newStage.show();
+			VistaNavigator.loadVista(VistaNavigator.DOCTORLIST);
+		}
 	}
 
 	private void handleSearchPatient() {

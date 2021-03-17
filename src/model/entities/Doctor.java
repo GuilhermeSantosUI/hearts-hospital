@@ -7,6 +7,14 @@ public class Doctor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	/*
+	 * create table Medico( idmedico serial not null , CRM integer not null, Nome
+	 * varchar(30) not null, CPF char(14) not null, Email varchar(30) not null,
+	 * NumCelular char(14) not null, DataNascimento Date not null, Senha Varchar(20)
+	 * not null, Primary key(idmedico, CRM) );
+	 */
+
+	private Integer idmedico;
 	private Integer crm;
 	private String nomemed;
 	private String cpf;
@@ -19,8 +27,9 @@ public class Doctor implements Serializable {
 
 	}
 
-	public Doctor(Integer crm, String nomemed, String cpf, String emailmed, String numcelularmed,
+	public Doctor(Integer idmedico, Integer crm, String nomemed, String cpf, String emailmed, String numcelularmed,
 			Date datanascimentomed, String senha) {
+		this.idmedico = idmedico;
 		this.crm = crm;
 		this.nomemed = nomemed;
 		this.cpf = cpf;
@@ -28,6 +37,14 @@ public class Doctor implements Serializable {
 		this.numcelularmed = numcelularmed;
 		this.datanascimentomed = datanascimentomed;
 		this.senha = senha;
+	}
+
+	public Integer getIdmedico() {
+		return idmedico;
+	}
+
+	public void setIdmedico(Integer idmedico) {
+		this.idmedico = idmedico;
 	}
 
 	public Integer getCrm() {

@@ -121,6 +121,7 @@ public class DoctorFormController implements Initializable {
 	private Doctor getData() {
 		Doctor doc = new Doctor();
 		ValidateException exception = new ValidateException("Validation error");
+		doc.setIdmedico(entity.getIdmedico());
 		if (txtCrm.getText().isEmpty() || txtCrm.getText().trim().equals("")) {
 			exception.addError("crm", "Field can't be empty");
 		} else {
@@ -179,7 +180,6 @@ public class DoctorFormController implements Initializable {
 		if (entity == null) {
 			throw new IllegalStateException("Entity was null");
 		}
-
 		txtCrm.setText(entity.getCrm().toString());
 		txtName.setText(entity.getNomemed());
 		txtCpf.setText(entity.getCpf());

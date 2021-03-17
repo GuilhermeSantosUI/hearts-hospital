@@ -1,8 +1,11 @@
 package gui;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -11,6 +14,7 @@ import java.util.Set;
 import db.DbException;
 import gui.listener.DataChangeListener;
 import gui.util.Alerts;
+import gui.util.Constraints;
 import gui.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -88,6 +92,14 @@ public class PatientFormController implements Initializable {
 
 	private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 
+	public void setServices(PatientService service) {
+		this.service = service;
+	}
+
+	public void setPatient(Patient entity) {
+		this.entity = entity;
+	}
+
 	@FXML
 	public void onBtSaveAction(ActionEvent event) {
 		if (entity == null) {
@@ -118,6 +130,7 @@ public class PatientFormController implements Initializable {
 		Patient pat = new Patient();
 		ValidateException exception = new ValidateException("Validation error");
 
+		pat.setIdpaciente(entity.getIdpaciente());
 		if (txtName.getText().isEmpty() || txtName.getText().trim().equals("")) {
 			exception.addError("nome", "Field can't be empty");
 		}
@@ -138,7 +151,7 @@ public class PatientFormController implements Initializable {
 			exception.addError("endereco", "Field can't be empty");
 		}
 		pat.setEndereco(txtAddress.getText());
-		
+
 		if (txtTelephone.getText().isEmpty() || txtTelephone.getText().trim().equals("")) {
 			exception.addError("telefone", "Field can't be empty");
 		}
@@ -157,8 +170,7 @@ public class PatientFormController implements Initializable {
 		if (exception.getErrors().size() > 0) {
 			throw exception;
 		}
-		
-		System.out.println(pat.toString());
+
 		return pat;
 	}
 
@@ -173,9 +185,48 @@ public class PatientFormController implements Initializable {
 		emailError.setText((fields.contains("email") ? errors.get("email") : ""));
 	}
 
+	public void handleUpdateData() {
+		if (entity == null) {
+			throw new IllegalStateException("Entity was null");
+		}
+
+		txtName.setText(entity.getNome());
+
+		if (entity.getSexo() == null) {
+			cbGender.getSelectionModel().selectFirst();
+		} else {
+			if (entity.getSexo() == "M") {
+				cbGender.setValue(Gender.M);
+			} else {
+				cbGender.setValue(Gender.F);
+			}
+		}
+		
+		Date x = entity.getDatanascimento();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		if (x != null) {
+			String s = sdf.format(x.getTime());
+			dpBirth.setValue(LOCAL_DATE(String.valueOf(s)));
+		}
+		
+		txtAddress.setText(entity.getEndereco());
+		txtCell.setText(entity.getNumcelular());
+		txtTelephone.setText(entity.getTelefone());
+		txtEmail.setText(entity.getEmail());
+
+	}
+	
+	private final LocalDate LOCAL_DATE(String dateString) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate localDate = LocalDate.parse(dateString, formatter);
+		return localDate;
+	}
+
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		cbGender.getItems().setAll(Gender.values());
+		Constraints.setTextFieldMaxLength(txtCell, 11);
+		Constraints.setTextFieldMaxLength(txtTelephone, 11);
 	}
 
 }

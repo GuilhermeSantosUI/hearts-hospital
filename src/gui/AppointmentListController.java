@@ -72,14 +72,6 @@ public class AppointmentListController implements Initializable {
 		VistaNavigator.loadVista(VistaNavigator.DASHBOARD);
 	}
 
-	public TableView<Appointment> getAppointmentTable() {
-		return appointmentTable;
-	}
-
-	public void setAppointmentTable(TableView<Appointment> appointmentTable) {
-		this.appointmentTable = appointmentTable;
-	}
-
 	@FXML
 	private void handleOpenModal(MouseEvent event) {
 		Dialog<ButtonType> dialog = new Dialog<>();
@@ -195,8 +187,8 @@ public class AppointmentListController implements Initializable {
 			throw new IllegalStateException("Service was null");
 		}
 		List<Appointment> list = service.findAll();
-		this.obsList = FXCollections.observableArrayList(list);
-		this.appointmentTable.setItems(this.obsList);
+		obsList = FXCollections.observableArrayList(list);
+		appointmentTable.setItems(obsList);
 	}
 
 	@Override

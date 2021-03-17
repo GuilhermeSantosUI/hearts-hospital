@@ -7,6 +7,14 @@ public class Patient implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	/*
+	 * create table Consulta( idconsulta integer not null, medicoid integer not
+	 * null, pacienteid integer not null, DataConsulta date not null, Descricao
+	 * varchar(200) not null, primary key(idconsulta, medicoid, idPaciente), foreign
+	 * key(medicoid) references Medico(CRM), foreign key (pacienteid) references
+	 * Paciente(idPaciente) );
+	 */
+
 	private Integer idpaciente;
 	private String nomep;
 	private String sexo;
@@ -98,7 +106,7 @@ public class Patient implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Patient [idpaciente=" +idpaciente + ", nomep=" + nomep + ", sexo=" + sexo + ", datanascimento="
+		return "Patient [idpaciente=" + idpaciente + ", nomep=" + nomep + ", sexo=" + sexo + ", datanascimento="
 				+ datanascimento + ", endereco=" + endereco + ", telefone=" + telefone + ", numcelular=" + numcelular
 				+ ", email=" + email + "]";
 	}
