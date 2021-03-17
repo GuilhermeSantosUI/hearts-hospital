@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import application.VistaNavigator;
 import db.DbException;
 import gui.listener.DataChangeListener;
 import gui.util.Alerts;
@@ -105,6 +106,7 @@ public class DoctorFormController implements Initializable {
 			service.saveOrUpdate(entity);
 			notifyDataChangeListeners();
 			Utils.currentStage(event).close();
+			VistaNavigator.loadVista(VistaNavigator.DOCTORLIST);
 		} catch (ValidateException e) {
 			setErrorMessages(e.getErrors());
 		} catch (DbException e) {

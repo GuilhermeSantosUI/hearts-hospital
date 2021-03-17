@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import application.VistaNavigator;
 import db.DbException;
 import gui.listener.DataChangeListener;
 import gui.util.Alerts;
@@ -78,8 +79,6 @@ public class AppointmentFormController implements Initializable {
 
 	private AppointmentService service = new AppointmentService();
 	
-	private AppointmentListController controller = new AppointmentListController();
-
 	private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 
 	public void setServices(AppointmentService service, DoctorService doctorService, PatientService patientService) {
@@ -128,7 +127,7 @@ public class AppointmentFormController implements Initializable {
 			service.saveOrUpdate(entity);
 			notifyDataChangeListeners();
 			Utils.currentStage(event).close();
-			controller.updateTableView();
+			VistaNavigator.loadVista(VistaNavigator.APPOINTMENTLIST);
 		} catch (ValidateException e) {
 			setErrorMessages(e.getErrors());
 			e.printStackTrace();
@@ -244,17 +243,19 @@ public class AppointmentFormController implements Initializable {
 		cbPatient.setButtonCell(factory.call(null));
 
 	}
+	
+	private void initializeNodes() {
+		handleLoadAssociatedObjects();
+		initializeComboBoxDoctor();
+		initializeComboBoxPatient();
+		txtDescription.setWrapText(true);
+	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		initializeNodes();
-		initializeComboBoxDoctor();
-		initializeComboBoxPatient();
 	}
 
-	private void initializeNodes() {
-		handleLoadAssociatedObjects();
-		txtDescription.setWrapText(true);
-	}
+	
 
 }
