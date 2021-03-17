@@ -116,7 +116,7 @@ public class AppointmentListController implements Initializable {
 			AppointmentFormController controller = fxmlLoader.getController();
 			controller.setAppointment(appointmentTable.getSelectionModel().getSelectedItem());
 			controller.setServices(new AppointmentService(), new DoctorService(), new PatientService());
-			controller.loadAssociatedObjects();
+			controller.handleLoadAssociatedObjects();
 			controller.handleUpdateData();
 			Scene newScene = new Scene(root);
 			Stage newStage = new Stage();

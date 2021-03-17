@@ -96,7 +96,7 @@ public class AppointmentFormController implements Initializable {
 		dataChangeListeners.add(listener);
 	}
 
-	public void loadAssociatedObjects() {
+	public void handleLoadAssociatedObjects() {
 		if (doctorService == null || patientService == null) {
 			throw new IllegalStateException("Service was null");
 		}
@@ -253,7 +253,7 @@ public class AppointmentFormController implements Initializable {
 	}
 
 	private void initializeNodes() {
-		loadAssociatedObjects();
+		handleLoadAssociatedObjects();
 		txtDescription.setWrapText(true);
 	}
 

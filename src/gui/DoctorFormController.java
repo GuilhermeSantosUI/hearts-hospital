@@ -1,8 +1,11 @@
 package gui;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -73,6 +76,14 @@ public class DoctorFormController implements Initializable {
 	private DoctorService service = new DoctorService();
 
 	private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
+
+	public void setServices(DoctorService service) {
+		this.service = service;
+	}
+
+	public void setDoctor(Doctor entity) {
+		this.entity = entity;
+	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -162,6 +173,32 @@ public class DoctorFormController implements Initializable {
 		cellError.setText((fields.contains("numcelular") ? errors.get("numcelular") : ""));
 		birthError.setText((fields.contains("datanascimento") ? errors.get("datanascimento") : ""));
 		passError.setText((fields.contains("senha") ? errors.get("senha") : ""));
+	}
+
+	public void handleUpdateData() {
+		if (entity == null) {
+			throw new IllegalStateException("Entity was null");
+		}
+
+		txtCrm.setText(entity.getCrm().toString());
+		txtName.setText(entity.getNomemed());
+		txtCpf.setText(entity.getCpf());
+		txtEmail.setText(entity.getEmailmed());
+		txtCell.setText(entity.getNumcelularmed());
+		Date x = entity.getDatanascimentomed();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		if (x != null) {
+			String s = sdf.format(x.getTime());
+			dpBirth.setValue(LOCAL_DATE(String.valueOf(s)));
+		}
+		txtPass.setText(entity.getSenha());
+
+	}
+
+	private final LocalDate LOCAL_DATE(String dateString) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate localDate = LocalDate.parse(dateString, formatter);
+		return localDate;
 	}
 
 }
